@@ -31,3 +31,13 @@ Rotate video 90 degrees counter-clockwise
 ```
 ffmpeg -i out.mp4 -vf "transpose=2" out2.mp4
 ```
+
+Add audio to video (https://superuser.com/a/590210)
+
+```
+ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:v:0 -map 1:a:0 output.mp4
+```
+
+ffmpeg option: use Python to number the files, pass them to ffmpeg for conversion
+
+Python option: use cv2, PIL etc. See http://blog.extramaster.net/2015/07/python-pil-to-mp4.html
