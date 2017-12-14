@@ -3,7 +3,7 @@ import os
 import random
 
 IMAGE_FOLDER = 'images'
-OUTPUT_FOLDER = 'build'
+OUTPUT_FOLDER = 'videos'
 FRAMES_PER_SECOND = 5
 
 
