@@ -8,6 +8,7 @@ pip install -f requirements.txt
 
 ## Todo
 
+ - [ ] convert these TODOs to issues
  - [ ] add letters to images
  - [ ] edit images for consistent lighting and scale
  - [ ] name images with letter and name, e.g. `p-tomasz.jpg`
