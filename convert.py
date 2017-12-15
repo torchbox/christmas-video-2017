@@ -8,6 +8,7 @@ AUDIO_FILE = 'beatbox.wav'
 FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
+
 def pick_images(message):
     # return a list of images, starting with letter images that spell
     # out the message, ending with enough non-letter images to pad
@@ -42,7 +43,7 @@ def images_to_video_ffmeg(message, images):
     final_filepath = os.path.join(OUTPUT_FOLDER, final_filename)
 
     if os.path.isfile(final_filepath):
-        return final_filename  # don't bother making the file again
+        return final_filepath  # don't bother making the file again
 
     tmpfile = '/tmp/%s.txt' % message_slug
     tempfo = open(tmpfile, 'w+t')
@@ -52,9 +53,9 @@ def images_to_video_ffmeg(message, images):
 
     # -r is framerate, -crf is quality (lower is better)
     combine_cmd = "ffmpeg -f concat -r 3 -safe 0 -i %s -crf 15 -vf fps=8,format=yuv420p %s" % (tmpfile, silent_filepath)
-    print "about to run: " + combine_cmd
+    print("about to run: " + combine_cmd)
     os.system(combine_cmd)
     os.system("ffmpeg -i %s -i %s -shortest -strict -2 %s" % (silent_filepath, AUDIO_FILE, final_filepath))
     # os.remove(silent_filepath)
 
-    return final_filename
+    return final_filepath
