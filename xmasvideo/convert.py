@@ -9,7 +9,7 @@ from flask import current_app as app
 
 FFMPEG_COMMON_ARGS = [
     '-loglevel',
-    'panic',
+    'fatal',
     '-y',
 ]
 FRAMES_PER_SECOND = 3
