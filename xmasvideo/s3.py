@@ -33,7 +33,7 @@ def upload_mp4_video_to_s3(file_path, filename):
     try:
         s3_client.upload_file(file_path, S3_BUCKET, filename, ExtraArgs={
             'ACL': 'public-read',
-            'ContentType': 'video/mp4'
+            'ContentType': 'video/mp4',
         })
     except botocore.exceptions.ClientError:
         raise
