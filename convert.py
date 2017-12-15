@@ -3,10 +3,9 @@ import os
 import random
 
 IMAGE_FOLDER = 'images'
-OUTPUT_FOLDER = 'videos'
+OUTPUT_FOLDER = 'static/videos'
 FRAMES_PER_SECOND = 5
 MAX_IMAGES = 20
-
 
 def pick_images(message):
     # return a list of images, starting with letter images that spell
@@ -34,11 +33,15 @@ def pick_images(message):
 
 
 def images_to_video(message, images):
+    output = os.path.join(OUTPUT_FOLDER, message.replace(' ', '-') + '.mp4')
+    
+    if os.path.isfile(output):
+        return output #  don't bother making the file again
+
     frame = cv2.imread(os.path.join(IMAGE_FOLDER, images[0]))
     height, width, layers = frame.shape
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    output = os.path.join(OUTPUT_FOLDER, message.replace(' ', '-') + '.mp4')
     video = cv2.VideoWriter(output, fourcc, FRAMES_PER_SECOND, (width, height))
 
     for image in images:
@@ -46,8 +49,6 @@ def images_to_video(message, images):
 
     cv2.destroyAllWindows()
     video.release()
+    return output
 
 
-message = 'paste cat'
-images = pick_images(message)
-images_to_video(message, images)

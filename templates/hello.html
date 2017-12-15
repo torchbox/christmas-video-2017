@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beatbox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Happy Christmas
+      </h1>
+      <p class="subtitle">
+        With love from <strong>Torchbox</strong>!
+      </p>
+      <form action = "/create" method="POST">
+        <div class="field">
+            <label class="label">Send a message</label>
+            <div class="control">
+            <input class="input" name = "message" type="text" placeholder="Your message">
+            </div>
+            <p class="help">You can only use the letters A, C, E, P, S and T. Spaces are OK.</p>
+        </div>
+        <div class="control">
+            <button class="button is-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  </body>
+</html>
