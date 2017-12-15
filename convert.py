@@ -57,6 +57,8 @@ def images_to_video(message, images):
 
     os.system("ffmpeg -i %s -i %s -shortest %s" % (silent_filepath, AUDIO_FILE, final_filepath))
     os.remove(silent_filepath)
+
+    # print os.path.abspath(final_filepath)
     
     return final_filename
 
