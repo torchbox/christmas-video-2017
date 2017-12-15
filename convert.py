@@ -2,7 +2,8 @@ import cv2
 import os
 import random
 
-IMAGE_FOLDER = '/Users/tom/Documents/code/python/tbx-xmas-2017/christmas-video-2017/images'
+ROOT_DIR = os.path.dirname(__file__)
+IMAGE_FOLDER = os.path.join(ROOT_DIR, 'images')
 OUTPUT_FOLDER = '/tmp/videos'
 AUDIO_FILE = 'beatbox.mp3'
 FRAMES_PER_SECOND = 3
@@ -29,7 +30,7 @@ def pick_images(message):
     for i in range(0, MAX_IMAGES - len(message)):
         image = random.choice(plain_images)
         selected_plain_images.append(image)
-        plain_images.remove(image)  
+        plain_images.remove(image)
     return message_images + selected_plain_images
 
 
@@ -39,7 +40,7 @@ def images_to_video(message, images):
     final_filename = message_slug + '.mp4'
     silent_filepath = os.path.join(OUTPUT_FOLDER, silent_filename)
     final_filepath = os.path.join(OUTPUT_FOLDER, final_filename)
-    
+
     if os.path.isfile(final_filepath):
         return final_filename  # don't bother making the file again
 
@@ -59,7 +60,7 @@ def images_to_video(message, images):
     os.remove(silent_filepath)
 
     # print os.path.abspath(final_filepath)
-    
+
     return final_filename
 
 def images_to_video_ffmeg(message, images):
@@ -69,7 +70,7 @@ def images_to_video_ffmeg(message, images):
     final_filename = message_slug + '.mp4'
     silent_filepath = os.path.join(OUTPUT_FOLDER, silent_filename)
     final_filepath = os.path.join(OUTPUT_FOLDER, final_filename)
-    
+
     if os.path.isfile(final_filepath):
         return final_filename  # don't bother making the file again
 
@@ -84,5 +85,5 @@ def images_to_video_ffmeg(message, images):
     os.system(combine_cmd)
     os.system("ffmpeg -i %s -i %s -shortest %s" % (silent_filepath, AUDIO_FILE, final_filepath))
     os.remove(silent_filepath)
-    
+
     return final_filename
