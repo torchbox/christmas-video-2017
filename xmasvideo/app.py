@@ -2,7 +2,7 @@ import os
 
 from flask import abort, Flask, redirect, render_template, request
 
-from .convert import pick_images, images_to_video_ffmeg
+from .convert import pick_images, images_to_video
 from .s3 import upload_mp4_video_to_s3, get_s3_file_public_url
 
 
@@ -19,7 +19,7 @@ def index():
 def create():
     message = request.form.get('message')
     images = pick_images(message)
-    video_path = images_to_video_ffmeg(message, images)
+    video_path = images_to_video(message, images)
     video_filename = os.path.split(video_path)[1]
     if not get_s3_file_public_url(video_filename):
         upload_mp4_video_to_s3(video_path, video_filename)

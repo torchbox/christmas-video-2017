@@ -5,6 +5,12 @@ import subprocess
 from flask import current_app as app
 
 
+FFMPEG_COMMON_ARGS = [
+    '-loglevel',
+    'panic',
+    '-y',
+]
+
 FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
@@ -35,7 +41,7 @@ def pick_images(message):
     return message_images + selected_plain_images
 
 
-def images_to_video_ffmeg(message, images):
+def images_to_video(message, images):
     message_slug = message.replace(' ', '-')
     silent_filename = '{}-silent.mp4'.format(message_slug)
     final_filename = '{}.mp4'.format(message_slug)
@@ -66,7 +72,7 @@ def images_to_video_ffmeg(message, images):
     # Combine images into the video
     combine_images_cmd = [
         'ffmpeg',
-        '-y',
+    ] + FFMPEG_COMMON_ARGS + [
         '-f',
         'concat',
         '-r',
@@ -87,7 +93,7 @@ def images_to_video_ffmeg(message, images):
     # Mix video with audio
     audio_cmd = [
         'ffmpeg',
-        '-y',
+    ] + FFMPEG_COMMON_ARGS + [
         '-i',
         silent_filepath,
         '-i',
