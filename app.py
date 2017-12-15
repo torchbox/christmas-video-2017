@@ -14,3 +14,7 @@ def create():
     video = images_to_video(message, images)
     return render_template('thanks.html', message=message, video=video)
 
+@app.route('/video/<name>')
+def video(name):
+    print name
+    return app.send_static_file('videos/' + name)

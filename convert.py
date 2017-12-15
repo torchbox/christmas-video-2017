@@ -33,10 +33,11 @@ def pick_images(message):
 
 
 def images_to_video(message, images):
-    output = os.path.join(OUTPUT_FOLDER, message.replace(' ', '-') + '.mp4')
+    filename = message.replace(' ', '-') + '.mp4'
+    output = os.path.join(OUTPUT_FOLDER, filename)
     
     if os.path.isfile(output):
-        return output #  don't bother making the file again
+        return filename #  don't bother making the file again
 
     frame = cv2.imread(os.path.join(IMAGE_FOLDER, images[0]))
     height, width, layers = frame.shape
@@ -49,6 +50,6 @@ def images_to_video(message, images):
 
     cv2.destroyAllWindows()
     video.release()
-    return output
+    return filename
 
 
