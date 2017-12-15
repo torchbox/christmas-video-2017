@@ -3,8 +3,9 @@ import os
 import random
 
 IMAGE_FOLDER = 'images'
-OUTPUT_FOLDER = 'static/videos'
-FRAMES_PER_SECOND = 5
+OUTPUT_FOLDER = '/tmp/videos'
+AUDIO_FILE = 'beatbox.mp3'
+FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
 def pick_images(message):
@@ -33,23 +34,30 @@ def pick_images(message):
 
 
 def images_to_video(message, images):
-    filename = message.replace(' ', '-') + '.mp4'
-    output = os.path.join(OUTPUT_FOLDER, filename)
+    message_slug = message.replace(' ', '-')
+    silent_filename = message_slug + '-silent.mp4'
+    final_filename = message_slug + '.mp4'
+    silent_filepath = os.path.join(OUTPUT_FOLDER, silent_filename)
+    final_filepath = os.path.join(OUTPUT_FOLDER, final_filename)
     
-    if os.path.isfile(output):
-        return filename #  don't bother making the file again
+    if os.path.isfile(final_filepath):
+        return final_filename  # don't bother making the file again
 
     frame = cv2.imread(os.path.join(IMAGE_FOLDER, images[0]))
     height, width, layers = frame.shape
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video = cv2.VideoWriter(output, fourcc, FRAMES_PER_SECOND, (width, height))
+    video = cv2.VideoWriter(silent_filepath, fourcc, FRAMES_PER_SECOND, (width, height))
 
     for image in images:
         video.write(cv2.imread(os.path.join(IMAGE_FOLDER, image)))
 
     cv2.destroyAllWindows()
     video.release()
-    return filename
+
+    os.system("ffmpeg -i %s -i %s -shortest %s" % (silent_filepath, AUDIO_FILE, final_filepath))
+    os.remove(silent_filepath)
+    
+    return final_filename
 
 

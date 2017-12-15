@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from convert import pick_images, images_to_video
+import os
 
 app = Flask(__name__)
 
@@ -16,5 +17,4 @@ def create():
 
 @app.route('/video/<name>')
 def video(name):
-    print name
-    return app.send_static_file('videos/' + name)
+    return send_from_directory('/tmp/videos/', name)
