@@ -10,7 +10,6 @@ FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
 def pick_images(message):
-    print IMAGE_FOLDER
     # return a list of images, starting with letter images that spell
     # out the message, ending with enough non-letter images to pad
     # to the required length
