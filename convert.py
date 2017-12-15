@@ -4,7 +4,7 @@ import random
 ROOT_DIR = os.path.dirname(__file__)
 IMAGE_FOLDER = os.path.join(ROOT_DIR, 'images')
 OUTPUT_FOLDER = '/tmp/videos'
-AUDIO_FILE = 'beatbox.mp3'
+AUDIO_FILE = 'beatbox.wav'
 FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
