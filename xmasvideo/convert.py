@@ -1,7 +1,7 @@
 import os
 import random
 
-ROOT_DIR = os.path.dirname(__file__)
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 IMAGE_FOLDER = os.path.join(ROOT_DIR, 'images')
 OUTPUT_FOLDER = '/tmp/videos'
 AUDIO_FILE = 'beatbox.wav'
