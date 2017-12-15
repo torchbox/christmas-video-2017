@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, send_from_directory
-from convert import pick_images, images_to_video
+from convert import pick_images, images_to_video, images_to_video_ffmeg
 import os
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ def index():
 def create():
     message = request.form.get('message')
     images = pick_images(message)
-    video = images_to_video(message, images)
+    video = images_to_video_ffmeg(message, images)
     return render_template('thanks.html', message=message, video=video)
 
 @app.route('/video/<name>')
