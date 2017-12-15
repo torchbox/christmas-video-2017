@@ -8,7 +8,7 @@
       <p class="subtitle">
         With love from <strong>Torchbox</strong>!
       </p>
-      <form action = "{{ url_for('create') }}" method="POST">
+      <form action = "{{ url_for('create') }}" id="postcard-create-form" method="POST">
         <div class="field">
             <label class="label">Send a message</label>
             <div class="control">
@@ -20,6 +20,7 @@
             <button class="button is-primary">Submit</button>
         </div>
       </form>
+      <h1 style="display: none;" class="title" id="loading-label">Generating video...</h1>
     </div>
   </section>
 {% endblock %}
