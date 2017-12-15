@@ -26,3 +26,15 @@ mogrify -alpha on -auto-orient *.jpg
  - [ ] build web UI for card creation
  - [ ] build web UI for card viewing / sharing
  - [ ] database for tracking created videos, views and shares
+
+## Deployment notes
+
+Add dokku to your git remote
+
+```
+git remote add dokku dokku@dokku.torchbox.click:beatbox
+```
+
+```
+dokku proxy:ports-add beatbox http:80:5000
+```
