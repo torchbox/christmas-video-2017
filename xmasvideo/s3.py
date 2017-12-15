@@ -1,18 +1,22 @@
 import logging
 
-import boto3
 import botocore
-
-from .config import S3_BUCKET, S3_KEY, S3_SECRET, S3_LOCATION
+import boto3
+from flask import current_app as app, g
 
 
 logger = logging.getLogger(__name__)
 
-s3_client = boto3.client(
-   "s3",
-   aws_access_key_id=S3_KEY,
-   aws_secret_access_key=S3_SECRET
-)
+
+def s3():
+    if getattr(g, 's3', None):
+        return g.s3
+    g.s3 = boto3.client(
+       "s3",
+       aws_access_key_id=app.config['S3_KEY'],
+       aws_secret_access_key=app.config['S3_SECRET'],
+    )
+    return g.s3
 
 
 def get_s3_file_public_url(filename):
@@ -20,20 +24,26 @@ def get_s3_file_public_url(filename):
     Get public URL or return None if does not exist.
     """
     try:
-        s3_client.head_object(Bucket=S3_BUCKET, Key=filename)
+        s3().head_object(Bucket=app.config['S3_BUCKET'], Key=filename)
     except botocore.exceptions.ClientError as error:
         error_code = int(error.response['Error']['Code'])
         if error_code == 404:
             return None
+        app.logger.exception('Failed to obtain information about %s '
+                             'from S3', filename)
         raise
-    return '{}{}'.format(S3_LOCATION, filename)
+    return '{}{}'.format(app.config['S3_LOCATION'], filename)
 
 
 def upload_mp4_video_to_s3(file_path, filename):
+    app.logger.info('Started upload of %s to S3', file_path)
     try:
-        s3_client.upload_file(file_path, S3_BUCKET, filename, ExtraArgs={
+        s3().upload_file(file_path, app.config['S3_BUCKET'], filename, ExtraArgs={
             'ACL': 'public-read',
             'ContentType': 'video/mp4',
         })
-    except botocore.exceptions.ClientError:
+        app.logger.info('Uploaded %s to S3', file_path)
+    except (boto3.exceptions.S3UploadFailedError,
+            botocore.exceptions.ClientError):
+        app.logger.exception('Failed upload of %s to S3', file_path)
         raise

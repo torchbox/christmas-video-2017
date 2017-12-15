@@ -1,10 +1,10 @@
 import os
 import random
+import subprocess
 
-ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
-IMAGE_FOLDER = os.path.join(ROOT_DIR, 'images')
-OUTPUT_FOLDER = '/tmp/videos'
-AUDIO_FILE = 'beatbox.wav'
+from flask import current_app as app
+
+
 FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
@@ -13,7 +13,8 @@ def pick_images(message):
     # return a list of images, starting with letter images that spell
     # out the message, ending with enough non-letter images to pad
     # to the required length
-    plain_images = [img for img in os.listdir(IMAGE_FOLDER) if img.startswith("P")]
+    plain_images = [img for img in os.listdir(app.config['XMAS_IMAGE_FOLDER'])
+                    if img.startswith("P")]
     message_images = []
     # pick letter images for the message
     for letter in message.lower():
@@ -23,7 +24,7 @@ def pick_images(message):
             plain_images.remove(image)  # don't use the same random image twice
         else:
             # TODO count letter usage so we don't use the same person twice
-            letter_image = letter + '1.jpg'
+            letter_image = '{}1.jpg'.format(letter)
             message_images.append(letter_image)
     # add non-letter images
     selected_plain_images = []
@@ -35,27 +36,68 @@ def pick_images(message):
 
 
 def images_to_video_ffmeg(message, images):
-    # ffmpeg -f concat -r 1/2 -i list.txt -crf 20 -vf fps=8,format=yuv420p video.mp4
     message_slug = message.replace(' ', '-')
-    silent_filename = message_slug + '-silent.mp4'
-    final_filename = message_slug + '.mp4'
-    silent_filepath = os.path.join(OUTPUT_FOLDER, silent_filename)
-    final_filepath = os.path.join(OUTPUT_FOLDER, final_filename)
+    silent_filename = '{}-silent.mp4'.format(message_slug)
+    final_filename = '{}.mp4'.format(message_slug)
+    silent_filepath = os.path.join(
+        app.config['XMAS_OUTPUT_FOLDER'],
+        silent_filename
+    )
+    final_filepath = os.path.join(
+        app.config['XMAS_OUTPUT_FOLDER'],
+        final_filename
+    )
 
     if os.path.isfile(final_filepath):
-        return final_filepath  # don't bother making the file again
+        app.logger.info('%s exists, skip rendering the file', final_filepath)
+        return final_filepath
 
-    tmpfile = '/tmp/%s.txt' % message_slug
-    tempfo = open(tmpfile, 'w+t')
+    images_txt_tmp_file = '/tmp/{}.txt'.format(message_slug)
+    tempfo = open(images_txt_tmp_file, 'w+t')
     for image in images:
-        tempfo.write("file '%s'\n" % os.path.join(IMAGE_FOLDER, image))
+        image_path = os.path.join(app.config['XMAS_IMAGE_FOLDER'], image)
+        if not os.path.isfile(image_path):
+            # TODO: Implement logic when file does not exist
+            continue
+        line = "file '{}'\n".format(image_path)
+        tempfo.write(line)
     tempfo.close()
 
-    # -r is framerate, -crf is quality (lower is better)
-    combine_cmd = "ffmpeg -f concat -r 3 -safe 0 -i %s -crf 15 -vf fps=8,format=yuv420p %s" % (tmpfile, silent_filepath)
-    print("about to run: " + combine_cmd)
-    os.system(combine_cmd)
-    os.system("ffmpeg -i %s -i %s -shortest -strict -2 %s" % (silent_filepath, AUDIO_FILE, final_filepath))
-    # os.remove(silent_filepath)
+    # Combine images into the video
+    combine_images_cmd = [
+        'ffmpeg',
+        '-y',
+        '-f',
+        'concat',
+        '-r',
+        '3',
+        '-safe',
+        '0',
+        '-i',
+        images_txt_tmp_file,
+        '-crf',
+        '15',
+        '-vf',
+        'fps=8,format=yuv420p',
+        silent_filepath,
+    ]
+    app.logger.info('about to run: %s', combine_images_cmd)
+    subprocess.check_call(combine_images_cmd)
+
+    # Mix video with audio
+    audio_cmd = [
+        'ffmpeg',
+        '-y',
+        '-i',
+        silent_filepath,
+        '-i',
+        app.config['XMAS_AUDIO_FILE'],
+        '-shortest',
+        '-strict',
+        '-2',
+        final_filepath,
+    ]
+    app.logger.info('About to run %s', repr(audio_cmd))
+    subprocess.check_call(audio_cmd)
 
     return final_filepath

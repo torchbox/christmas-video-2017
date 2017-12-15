@@ -14,10 +14,10 @@
       </h1>
       <p class="subtitle">
         For your message <strong>{{ message }}</strong>. <br />
-        There should now be a video at <a href = "/video/{{ video }}">{{ video }}</a>.
+        There should now be a video at <a href = "{{ url_for('video', name=video) }}">{{ video }}</a>.
       </p>
       <p class="subtitle">
-          Would you like to <a href = "/">make another one?</a>
+          Would you like to <a href = "{{ url_for('index') }}">make another one?</a>
       </p>
     </div>
   </section>

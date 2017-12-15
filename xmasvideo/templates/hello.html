@@ -15,7 +15,7 @@
       <p class="subtitle">
         With love from <strong>Torchbox</strong>!
       </p>
-      <form action = "/create" method="POST">
+      <form action = "{{ url_for('create') }}" method="POST">
         <div class="field">
             <label class="label">Send a message</label>
             <div class="control">
