@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Thanks
+      </h1>
+      <p class="subtitle">
+        For your message <strong>{{ message }}</strong>. <br />
+        <video src="{{ video_url }}" controls class="video-player">
+            <a href="{{ video_url }}">Video</a>
+        </video>
+      </p>
+      <p class="subtitle">
+          Would you like to <a href = "{{ url_for('index') }}">make another one?</a>
+      </p>
+    </div>
+  </section>
+{% endblock %}

@@ -1,5 +1,7 @@
+from collections import Counter
 import os
 import random
+import re
 import subprocess
 
 from flask import current_app as app
@@ -10,17 +12,33 @@ FFMPEG_COMMON_ARGS = [
     'panic',
     '-y',
 ]
-
 FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
+
+
+def get_next_letter_image(letter, letter_images, letter_counter):
+    options = [img for img in letter_images if img.startswith(letter)]
+    if not options:
+        return
+    if letter_counter[letter] >= len(options):
+        del letter_counter[letter]
+        return options[0]
+    letter_counter[letter] += 1
+    return options[letter_counter[letter] - 1]
 
 
 def pick_images(message):
     # return a list of images, starting with letter images that spell
     # out the message, ending with enough non-letter images to pad
     # to the required length
-    plain_images = [img for img in os.listdir(app.config['XMAS_IMAGE_FOLDER'])
-                    if img.startswith("P")]
+    plain_image_pattern = re.compile(r'^P.*\.jpg$')
+    images_list = os.listdir(app.config['XMAS_IMAGE_FOLDER'])
+    plain_images = [img for img in images_list
+                    if plain_image_pattern.match(img)]
+    letter_pattern = re.compile(r'^[a-z][0-9]+\.jpg$')
+    letter_images = [img for img in images_list if letter_pattern.match(img)]
+    letter_images.sort()
+    letter_counter = Counter()
     message_images = []
     # pick letter images for the message
     for letter in message.lower():
@@ -29,8 +47,11 @@ def pick_images(message):
             message_images.append(image)
             plain_images.remove(image)  # don't use the same random image twice
         else:
-            # TODO count letter usage so we don't use the same person twice
-            letter_image = '{}1.jpg'.format(letter)
+            letter_image = get_next_letter_image(letter, letter_images,
+                                                 letter_counter)
+            if not letter_image:
+                # TODO: Implement logic for when there's no letter image
+                continue
             message_images.append(letter_image)
     # add non-letter images
     selected_plain_images = []
@@ -42,6 +63,8 @@ def pick_images(message):
 
 
 def images_to_video(message, images):
+    os.makedirs(app.config['XMAS_OUTPUT_FOLDER'], exist_ok=True)
+    os.makedirs(app.config['XMAS_IMAGE_TXT_FILES_DIR'], exist_ok=True)
     message_slug = message.replace(' ', '-')
     silent_filename = '{}-silent.mp4'.format(message_slug)
     final_filename = '{}.mp4'.format(message_slug)
@@ -58,7 +81,10 @@ def images_to_video(message, images):
         app.logger.info('%s exists, skip rendering the file', final_filepath)
         return final_filepath
 
-    images_txt_tmp_file = '/tmp/{}.txt'.format(message_slug)
+    images_txt_tmp_file = os.path.join(
+        app.config['XMAS_IMAGE_TXT_FILES_DIR'],
+        '{}.txt'.format(message_slug)
+    )
     tempfo = open(images_txt_tmp_file, 'w+t')
     for image in images:
         image_path = os.path.join(app.config['XMAS_IMAGE_FOLDER'], image)
