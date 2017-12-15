@@ -1,4 +1,3 @@
-import cv2
 import os
 import random
 
@@ -33,35 +32,6 @@ def pick_images(message):
         plain_images.remove(image)
     return message_images + selected_plain_images
 
-
-def images_to_video(message, images):
-    message_slug = message.replace(' ', '-')
-    silent_filename = message_slug + '-silent.mp4'
-    final_filename = message_slug + '.mp4'
-    silent_filepath = os.path.join(OUTPUT_FOLDER, silent_filename)
-    final_filepath = os.path.join(OUTPUT_FOLDER, final_filename)
-
-    if os.path.isfile(final_filepath):
-        return final_filename  # don't bother making the file again
-
-    frame = cv2.imread(os.path.join(IMAGE_FOLDER, images[0]))
-    height, width, layers = frame.shape
-
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video = cv2.VideoWriter(silent_filepath, fourcc, FRAMES_PER_SECOND, (width, height))
-
-    for image in images:
-        video.write(cv2.imread(os.path.join(IMAGE_FOLDER, image)))
-
-    cv2.destroyAllWindows()
-    video.release()
-
-    os.system("ffmpeg -i %s -i %s -shortest %s" % (silent_filepath, AUDIO_FILE, final_filepath))
-    os.remove(silent_filepath)
-
-    # print os.path.abspath(final_filepath)
-
-    return final_filename
 
 def images_to_video_ffmeg(message, images):
     # ffmpeg -f concat -r 1/2 -i list.txt -crf 20 -vf fps=8,format=yuv420p video.mp4
