@@ -29,12 +29,12 @@ mogrify -alpha on -auto-orient *.jpg
 
 ## Deployment notes
 
-Add dokku to your git remote
-
+Add dokku to your git remote:
 ```
 git remote add dokku dokku@dokku.torchbox.click:beatbox
 ```
 
+Add port 80:
 ```
 dokku proxy:ports-add beatbox http:80:5000
 ```
