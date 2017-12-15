@@ -2,13 +2,15 @@ import cv2
 import os
 import random
 
-IMAGE_FOLDER = '/Users/tom/Documents/code/python/tbx-xmas-2017/christmas-video-2017/images'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGE_FOLDER = os.path.join(BASE_DIR, 'images')
 OUTPUT_FOLDER = '/tmp/videos'
 AUDIO_FILE = 'beatbox.mp3'
 FRAMES_PER_SECOND = 3
 MAX_IMAGES = 20
 
 def pick_images(message):
+    print IMAGE_FOLDER
     # return a list of images, starting with letter images that spell
     # out the message, ending with enough non-letter images to pad
     # to the required length

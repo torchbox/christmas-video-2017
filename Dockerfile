@@ -4,7 +4,6 @@ LABEL maintainer="Tom Dyson"
 RUN apt-get update
 RUN apt-get install -y ffmpeg x264 libx264-dev
 RUN apt-get install -y python python-pip
-RUN apt-get install -y python-opencv
 
 ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP app.py
