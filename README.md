@@ -3,9 +3,8 @@
 ## Run locally
 
 ```
-pip install -f requirements.txt
-export FLASK_APP=app.py
-flask run
+pip install -r requirements.txt
+./run.py
 ```
 
 Make sure images are rotated correctly, e.g. with
@@ -37,4 +36,5 @@ git remote add dokku dokku@dokku.torchbox.click:beatbox
 Add port 80:
 ```
 dokku proxy:ports-add beatbox http:80:5000
+dokku config:set SECRET_KEY='your app secret key' S3_SECRET='' S3_ACCESS_KEY='' S3_BUCKET=''
 ```

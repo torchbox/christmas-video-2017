@@ -3,7 +3,7 @@ import logging
 import boto3
 import botocore
 
-from config import S3_BUCKET, S3_KEY, S3_SECRET, S3_LOCATION
+from .config import S3_BUCKET, S3_KEY, S3_SECRET, S3_LOCATION
 
 
 logger = logging.getLogger(__name__)
