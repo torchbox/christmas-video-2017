@@ -8,6 +8,12 @@ export FLASK_APP=app.py
 flask run
 ```
 
+Make sure images are rotated correctly, e.g. with
+
+```
+mogrify -alpha on -auto-orient *.jpg
+```
+
 ## Todo
 
  - [ ] convert these TODOs to issues
