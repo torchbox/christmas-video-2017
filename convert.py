@@ -54,7 +54,7 @@ def images_to_video_ffmeg(message, images):
     combine_cmd = "ffmpeg -f concat -r 3 -safe 0 -i %s -crf 15 -vf fps=8,format=yuv420p %s" % (tmpfile, silent_filepath)
     print "about to run: " + combine_cmd
     os.system(combine_cmd)
-    os.system("ffmpeg -strict experimental -i %s -i %s -shortest %s" % (silent_filepath, AUDIO_FILE, final_filepath))
+    os.system("ffmpeg -i %s -i %s -shortest -strict -2 %s" % (silent_filepath, AUDIO_FILE, final_filepath))
     # os.remove(silent_filepath)
 
     return final_filename
