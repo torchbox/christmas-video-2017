@@ -18,6 +18,13 @@ Make sure images are rotated correctly, e.g. with
 mogrify -alpha on -auto-orient *.jpg
 ```
 
+## FE assets
+To compile Sass please.
+```bash
+yarn  # to install dependencies, run it once
+yarn scss:watch
+```
+
 ## Todo
 
  - [ ] convert these TODOs to issues

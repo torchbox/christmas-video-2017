@@ -1,0 +1,16 @@
+{
+  "name": "christmas-video-2017",
+  "version": "1.0.0",
+  "main": "xmasvideo/static/js/main.js",
+  "repository": "https://github.com/torchbox/christmas-video-2017",
+  "author": "Tomasz Knapik <tomasz.knapik@torchbox.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.6.1",
+    "node-sass": "^4.7.2"
+  },
+  "scripts": {
+    "scss": "node-sass -r xmasvideo/static/scss/main.scss -o xmasvideo/static/css/",
+    "scss:watch": "npm run scss && npm run scss -- -w"
+  }
+}
