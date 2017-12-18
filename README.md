@@ -1,15 +1,20 @@
 # Torchbox Christmas Card Generator
 
+## Requirements
+
+* Python 3
+* S3 storage for videos required
+
 ## Run locally
 
-```
+```bash
 pip install -r requirements.txt
 ./run.py
 ```
 
 Make sure images are rotated correctly, e.g. with
 
-```
+```bash
 mogrify -alpha on -auto-orient *.jpg
 ```
 
@@ -28,13 +33,24 @@ mogrify -alpha on -auto-orient *.jpg
 
 ## Deployment notes
 
+Please set the following environmental variables
+ * `CACHE_FLUSH_PASSWORD` - password used to flush already created videos.
+ * `S3_BUCKET`, `S3_ACCESS_KEY`, `S3_SECRET` - S3 storage variables
+
+
 Add dokku to your git remote:
-```
+```bash
 git remote add dokku dokku@dokku.torchbox.click:beatbox
 ```
 
 Add port 80:
-```
+```bash
 dokku proxy:ports-add beatbox http:80:5000
-dokku config:set SECRET_KEY='your app secret key' S3_SECRET='' S3_ACCESS_KEY='' S3_BUCKET=''
+dokku config:set SECRET_KEY='your app secret key' S3_SECRET='' S3_ACCESS_KEY='' S3_BUCKET='' CACHE_FLUSH_PASSWORD=''
+```
+
+Flushing created videos
+```bash
+curl -X POST -d "password=your-password-here" http://beatbox.dokku.torchbox.click/flush-s3/
+curl -X POST -d "password=your-password-here" http://beatbox.dokku.torchbox.click/flush-tmp/
 ```

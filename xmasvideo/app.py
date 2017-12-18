@@ -3,8 +3,16 @@ import os
 from flask import abort, Flask, redirect, render_template, request, url_for
 
 from .convert import pick_images, images_to_video
-from .s3 import upload_mp4_video_to_s3, get_s3_file_public_url
-from .utils import slugify
+from .s3 import (
+    upload_mp4_video_to_s3,
+    get_s3_file_public_url,
+    flush_videos_from_s3,
+)
+from .utils import (
+    cache_flush_password_required,
+    flush_tmp_app_directories,
+    slugify,
+)
 
 
 app = Flask(__name__)
@@ -40,3 +48,17 @@ def video(message, name):
         abort(404)
     return render_template('video.html', video_url=s3_video_url,
                            message=message)
+
+
+@app.route('/flush-s3/', methods=['POST'])
+@cache_flush_password_required
+def flush_s3():
+    flush_videos_from_s3()
+    return 'Flushed S3 videos'
+
+
+@app.route('/flush-tmp/', methods=['POST'])
+@cache_flush_password_required
+def delete_tmp():
+    flush_tmp_app_directories()
+    return 'Flushed tmp files'

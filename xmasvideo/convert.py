@@ -92,6 +92,7 @@ def images_to_video(message, images):
             # TODO: Implement logic when file does not exist
             continue
         line = "file '{}'\n".format(image_path)
+        print(line)
         tempfo.write(line)
     tempfo.close()
 
@@ -102,7 +103,7 @@ def images_to_video(message, images):
         '-f',
         'concat',
         '-r',
-        '3',
+        '8',
         '-safe',
         '0',
         '-i',
