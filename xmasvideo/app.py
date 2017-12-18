@@ -32,7 +32,7 @@ def index():
 def create():
     message = request.form.get('message')
     sluggified_message = slugify(message)
-    if not message:
+    if not sluggified_message:
         return redirect(url_for('index'))
     images = pick_images(sluggified_message)
     video_path = images_to_video(sluggified_message, images)

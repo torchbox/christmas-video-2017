@@ -1,6 +1,7 @@
 from functools import wraps
 import re
 import shutil
+import string
 
 from flask import abort, current_app as app, request
 
@@ -12,7 +13,7 @@ def slugify(text, delim='-'):
     """Generates ASCII-only slug without digits."""
     result = []
     for word in _punct_re.split(text.lower()):
-        word = ''.join([i for i in word if i.isalpha()])
+        word = ''.join([i for i in word if i in string.ascii_lowercase])
         if word:
             result.append(word)
     return str(delim.join(result))
