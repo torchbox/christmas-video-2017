@@ -103,7 +103,7 @@ def images_to_video(message, images):
         '-f',
         'concat',
         '-r',
-        '8',
+        '3',
         '-safe',
         '0',
         '-i',
@@ -111,7 +111,7 @@ def images_to_video(message, images):
         '-crf',
         '15',
         '-vf',
-        'fps=8,format=yuv420p',
+        'format=yuv420p',
         silent_filepath,
     ]
     app.logger.info('about to run: %s', combine_images_cmd)
