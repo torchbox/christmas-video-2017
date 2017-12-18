@@ -1,28 +1,21 @@
+@import 'fonts';
+
 // 1. Import the initial variables
 @import "../../../node_modules/bulma/sass/utilities/initial-variables";
 @import "../../../node_modules/bulma/sass/utilities/functions";
 
-// 2. Set your own initial variables
-// Update blue
-$blue: #72d0eb;
-// Add pink and its invert
-$pink: #ffb3b3;
-$pink-invert: #fff;
+$family-serif: "butlerregular";
+$family-primary: $family-serif;
+$orange: #fb5a40;
+$primary: $orange;
 
-// 3. Set the derived variables
-// Use the new pink as the primary color
-$primary: $red;
-$primary-invert: $pink-invert;
-// Use the existing orange as the danger color
-$danger: $orange;
 
+// 5. Add new color variables to the color map.
+@import "../../../node_modules/bulma/sass/utilities/derived-variables.sass";
 
 // 6. Import the rest of Bulma
 @import "../../../node_modules/bulma/bulma";
 
-
-.video-player {
-    background: $black;
-    width: 100%;
-    height: 600px;
-}
+// Local imports
+@import 'generic';
+@import 'home';

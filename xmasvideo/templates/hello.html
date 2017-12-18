@@ -1,26 +1,36 @@
 {% extends "base.html" %}
+{% block body_class %}template--home{% endblock %}
 {% block content %}
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Happy Christmas
-      </h1>
-      <p class="subtitle">
-        With love from <strong>Torchbox</strong>!
+  <section class="hide-if-generating-video section">
+    <div class="container home-wrapper">
+      <svg class="holly-graphic">
+        <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#holly"></use>
+      </svg>
+      <p class="intro-text">
+        Send our card or make one for yourself, just enter the recipient's name and we'll make you a special link.
       </p>
       <form action = "{{ url_for('create') }}" id="postcard-create-form" method="POST">
-        <div class="field">
-            <label class="label">Send a message</label>
-            <div class="control">
-            <input class="input" name="message" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text" placeholder="Your message">
+        <div class="columns">
+          <div class="column is-four-fifths">
+            <div class="field">
+                <div class="control">
+                <input class="input" name="message" placeholder="Enter message here" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text">
+                </div>
+                <p class="help">Please use letters and spaces only.</p>
             </div>
-            <p class="help">Please use letters and spaces only.</p>
-        </div>
-        <div class="control">
-            <button class="button is-primary">Submit</button>
+          </div>
+          <div class="column">
+            <div class="control">
+                <button class="full-width button is-primary">Start</button>
+            </div>
+          </div>
         </div>
       </form>
-      <h1 style="display: none;" class="title" id="loading-label">Generating video...</h1>
+    </div>
+  </section>
+  <section class="show-if-generating-video section">
+    <div class="container home-wrapper">
+      <h1 class="title">Generating video...</h1>
     </div>
   </section>
 {% endblock %}

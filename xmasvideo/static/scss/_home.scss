@@ -1,0 +1,24 @@
+.template--home {
+    text-align: center;
+    padding-top: 100px;
+
+    .intro-text {
+        margin-bottom: 30px;
+        font-size: 1.25rem;
+    }
+
+    .home-wrapper {
+        max-width: 800px;
+    }
+
+    .holly-graphic {
+        width: 90px;
+        height: 79px;
+    }
+
+    .button {
+        &.full-width {
+            width: 100%;
+        }
+    }
+}

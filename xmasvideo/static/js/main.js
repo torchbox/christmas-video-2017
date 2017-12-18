@@ -11,13 +11,26 @@ function registerFormCallback() {
 }
 
 function formSubmitCallback(event) {
-  var target = event.target;
-  var buttons = target.querySelectorAll('button');
-  for (var i = 0; i < buttons.length; i++) {
+    var target = event.target;
+    var buttons = target.querySelectorAll('button');
+    for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
-  }
-  document.querySelector('#loading-label').style.display = 'block';
-  target.submit();
+      buttons[i].classList.add('is-loading');
+    }
+    var fields = target.querySelectorAll('input');
+    for (var i = 0; i < fields.length; i++) {
+        fields[i].readonly = true;
+    }
+    $('.hide-if-generating-video').fadeOut({
+        complete: function() {
+            $('.show-if-generating-video').fadeIn({
+                complete: function () {
+                    $('.show-if-generating-video').addClass('blink');
+                },
+            });
+        },
+    });
+    target.submit();
 }
 
 function createSocialSharingButtons() {
@@ -28,5 +41,8 @@ function createSocialSharingButtons() {
     if (window.shareURL) {
         options.url = window.shareURL;
     }
-    $(".js-socials-container").jsSocials(options);
+    var $jsSocialsContainer = $(".js-socials-container");
+    if ($jsSocialsContainer) {
+        $jsSocialsContainer.jsSocials(options);
+    }
 }

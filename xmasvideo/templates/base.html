@@ -8,8 +8,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
     {% block extra_css %}{% endblock %}
   </head>
-  <body>
+  <body class="template {% block body_class %}{% endblock %}">
       {% block content %}{% endblock %}
+      <footer>
+        <a href="http://torchbox.com/">
+          <svg class="torchbox-logo">
+            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#torchbox-logo"></use>
+          </svg>
+        </a>
+      </footer>
       <script
     	  src="https://code.jquery.com/jquery-3.2.1.min.js"
     	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
