@@ -13,7 +13,6 @@ FFMPEG_COMMON_ARGS = [
     '-y',
 ]
 FRAMES_PER_SECOND = 3
-MAX_IMAGES = 20
 
 
 def get_next_letter_image(letter, letter_images, letter_counter):
@@ -55,7 +54,7 @@ def pick_images(message):
             message_images.append(letter_image)
     # add non-letter images
     selected_plain_images = []
-    for i in range(0, MAX_IMAGES - len(message_images)):
+    for i in range(0, app.config['XMAS_MAX_IMAGES'] - len(message_images)):
         image = random.choice(plain_images)
         selected_plain_images.append(image)
         plain_images.remove(image)

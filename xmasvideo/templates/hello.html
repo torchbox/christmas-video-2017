@@ -12,7 +12,7 @@
         <div class="field">
             <label class="label">Send a message</label>
             <div class="control">
-            <input class="input" name="message" required pattern="[A-Za-z\s]+" type="text" placeholder="Your message">
+            <input class="input" name="message" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text" placeholder="Your message">
             </div>
             <p class="help">You can only use the letters A, C, E, P, S and T. Spaces are OK.</p>
         </div>
