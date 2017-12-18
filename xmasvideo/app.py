@@ -49,15 +49,16 @@ def create():
 
 @app.route('/video/<message>')
 def video(message):
-    message = urllib.parse.unquote(message)
-    name = '{}.mp4'.format(slugify(message))
+    unescaped_message = urllib.parse.unquote(message)
+    name = '{}.mp4'.format(slugify(unescaped_message))
     s3_video_url = get_s3_file_public_url(name)
     if not s3_video_url:
         app.logger.info('%s does not exist on S3', name)
         abort(404)
     context = {
         'video_url': s3_video_url,
-        'message': message,
+        'message': unescaped_message,
+        'share_url': request.base_url,
     }
     return render_template('video.html', **context)
 

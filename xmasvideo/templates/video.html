@@ -1,19 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Thanks
-      </h1>
-      <p class="subtitle">
-        For your message <strong>{{ message }}</strong>. <br />
-        <video src="{{ video_url }}" controls class="video-player">
-            <a href="{{ video_url }}">Video</a>
-        </video>
-      </p>
-      <p class="subtitle">
-          Would you like to <a href = "{{ url_for('index') }}">make another one?</a>
-      </p>
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Thanks
+        </h1>
+        <h2 class="subtitle">
+          for your message <strong>{{ message }}</strong>.
+        </h2>
+      </div>
     </div>
   </section>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-fluid">
+        <video src="{{ video_url }}" controls class="video-player">
+          <a href="{{ video_url }}">Click here to watch the video.</a>
+        </video>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p><a class="button is-primary is-large" href="{{ url_for('index') }}">Make another one</a></p>
+      <br>
+      <h2 class="title is-2">Share</h2>
+      <div class="field">
+        <label class="label">Share to social media</label>
+        <div class="js-socials-container"></div>
+      </div>
+      <div class="field">
+        <label class="label">Share URL</label>
+        <div class="control">
+          <input class="input" readonly type="text" value="{{ share_url }}">
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block extra_css %}
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css">
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css">
+{% endblock %}
+{% block extra_js %}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+  <script>
+    window.shareURL = '{{ share_url }}';
+  </script>
 {% endblock %}

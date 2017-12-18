@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   registerFormCallback();
+  createSocialSharingButtons();
 });
 
 function registerFormCallback() {
@@ -17,4 +18,15 @@ function formSubmitCallback(event) {
   }
   document.querySelector('#loading-label').style.display = 'block';
   target.submit();
+}
+
+function createSocialSharingButtons() {
+    var options = {
+        shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "whatsapp"],
+        showCount: true,
+    };
+    if (window.shareURL) {
+        options.url = window.shareURL;
+    }
+    $(".js-socials-container").jsSocials(options);
 }
