@@ -55,7 +55,7 @@ def pick_images(message):
             message_images.append(letter_image)
     # add non-letter images
     selected_plain_images = []
-    for i in range(0, MAX_IMAGES - len(message)):
+    for i in range(0, MAX_IMAGES - len(message_images)):
         image = random.choice(plain_images)
         selected_plain_images.append(image)
         plain_images.remove(image)
@@ -88,8 +88,8 @@ def images_to_video(message, images):
     tempfo = open(images_txt_tmp_file, 'w+t')
     for image in images:
         image_path = os.path.join(app.config['XMAS_IMAGE_FOLDER'], image)
+        # Double check if file exists, otherwise ffmpeg may fail.
         if not os.path.isfile(image_path):
-            # TODO: Implement logic when file does not exist
             continue
         line = "file '{}'\n".format(image_path)
         tempfo.write(line)
@@ -102,7 +102,7 @@ def images_to_video(message, images):
         '-f',
         'concat',
         '-r',
-        '3',
+        '{fps}'.format(fps=FRAMES_PER_SECOND),
         '-safe',
         '0',
         '-i',
