@@ -21,10 +21,10 @@ def get_next_letter_image(letter, letter_images, letter_counter):
     if not options:
         return
     if letter_counter[letter] >= len(options):
-        del letter_counter[letter]
+        letter_counter[letter] = 1
         return options[0]
     letter_counter[letter] += 1
-    return options[letter_counter[letter] - 1]
+    return options[letter_counter[letter]-1]
 
 
 def pick_images(message):
@@ -92,7 +92,6 @@ def images_to_video(message, images):
             # TODO: Implement logic when file does not exist
             continue
         line = "file '{}'\n".format(image_path)
-        print(line)
         tempfo.write(line)
     tempfo.close()
 
