@@ -63,5 +63,6 @@ def upload_mp4_video_to_s3(file_path, filename):
 
 
 def flush_videos_from_s3():
-    app.logger.info('Started flushing videos from S3')
+    app.logger.info('Flushing objects from S3 bucket %s',
+                    app.config['S3_BUCKET'])
     s3_resource().Bucket(app.config['S3_BUCKET']).objects.delete()

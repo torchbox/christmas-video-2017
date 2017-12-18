@@ -55,7 +55,6 @@ def video(message):
     if not s3_video_url:
         app.logger.info('%s does not exist on S3', name)
         abort(404)
-
     context = {
         'video_url': s3_video_url,
         'message': message,

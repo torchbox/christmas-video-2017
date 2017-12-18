@@ -35,7 +35,11 @@ def flush_tmp_app_directories():
         shutil.rmtree(app.config['XMAS_OUTPUT_FOLDER'])
     except FileNotFoundError:
         pass
+    app.logger.info('Deleted %s and its contents',
+                    app.config['XMAS_OUTPUT_FOLDER'])
     try:
         shutil.rmtree(app.config['XMAS_IMAGE_TXT_FILES_DIR'])
     except FileNotFoundError:
         pass
+    app.logger.info('Deleted %s and its contents',
+                    app.config['XMAS_IMAGE_TXT_FILES_DIR'])
