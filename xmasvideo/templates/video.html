@@ -5,24 +5,18 @@
 {% endblock %}
 {% block title %}{{ message }}{% endblock %}
 {% block content %}
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          {{ message }}
-        </h1>
-      </div>
-    </div>
-  </section>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-fluid">
-        <video src="{{ video_url }}" controls class="video-player">
-          <a href="{{ video_url }}">Click here to watch the video.</a>
-        </video>
-      </div>
-    </div>
-  </section>
+
+  <svg>
+    <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-left" viewBox="0 0 602.53 379.5"></use>
+  </svg>
+
+  <svg>
+    <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-right" viewBox="0 0 635.74 339.82"></use>
+  </svg>
+
+  <video src="{{ video_url }}" controls class="video-player">
+    <a href="{{ video_url }}">Click here to watch the video.</a>
+  </video>
   <section class="section">
     <div class="container">
       <p><a class="button is-primary is-large" href="{{ url_for('index') }}">Make another one</a></p>

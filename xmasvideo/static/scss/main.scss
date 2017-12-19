@@ -1,6 +1,5 @@
-@import 'fonts';
+@import 'font';
 
-// 1. Import the initial variables
 @import "../../../node_modules/bulma/sass/utilities/initial-variables";
 @import "../../../node_modules/bulma/sass/utilities/functions";
 
@@ -10,13 +9,15 @@ $orange: #fb5a40;
 $primary: $orange;
 
 
-// 5. Add new color variables to the color map.
 @import "../../../node_modules/bulma/sass/utilities/derived-variables.sass";
 
-// 6. Import the rest of Bulma
 @import "../../../node_modules/bulma/bulma";
 
 // Local imports
 @import 'generic';
-@import 'home';
-@import 'cracker';
+@import 'basics/button';
+@import 'basics/input';
+@import 'things/loading-cracker';
+@import 'things/torchbox-logo';
+@import 'pages/hello';
+@import 'pages/video';

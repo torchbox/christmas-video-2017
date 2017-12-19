@@ -6508,35 +6508,8 @@ label.panel-block {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem; }
 
-.video-player {
-  background: #0a0a0a;
-  width: 100%;
-  height: 600px; }
-
-.show-if-generating-video {
-  display: none; }
-
-.hide-if-generating-video {
-  display: block; }
-
 .button {
   border-radius: 0; }
-
-footer {
-  width: 100%; }
-
-.torchbox-logo {
-  width: 150px;
-  fill: #fb5a40; }
-  .torchbox-logo-container {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 40px; }
-  .torchbox-logo:hover {
-    fill: #0a0a0a; }
-
-.container {
-  max-width: 1024px; }
 
 .input {
   font-size: 2rem;
@@ -6551,88 +6524,83 @@ footer {
     border-radius: 0;
     border-bottom-width: 2px; }
 
-.template--home {
+.loading-cracker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px; }
+  .loading-cracker-left, .loading-cracker-right {
+    flex-basis: 50%;
+    height: 50px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: loading-cracker; }
+    .loading-cracker-left > svg, .loading-cracker-right > svg {
+      height: 45px; }
+  .loading-cracker-left {
+    text-align: right; }
+  .loading-cracker-right {
+    text-align: left; }
+
+@keyframes loading-cracker {
+  0% {
+    flex-basis: 50%;
+    opacity: 0; }
+  75% {
+    flex-basis: 47%;
+    opacity: 1; }
+  100% {
+    flex-basis: 47%;
+    opacity: 0; } }
+
+.torchbox-logo {
+  width: 150px;
+  fill: #fb5a40; }
+  .torchbox-logo-container {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 40px; }
+  .torchbox-logo:hover {
+    fill: #0a0a0a; }
+
+.template-hello {
   text-align: center;
   padding-top: 100px; }
-  .template--home .intro-text {
+  .template-hello .show-if-generating-video {
+    display: none; }
+  .template-hello .hide-if-generating-video {
+    display: block; }
+  .template-hello .intro-text {
     margin-bottom: 30px;
     font-weight: 300;
     font-size: 1.25rem; }
-  .template--home .home-wrapper {
+  .template-hello .hello-wrapper {
     margin: 0 auto;
     max-width: 600px; }
-  .template--home .holly-graphic {
+  .template-hello .holly-graphic {
     width: 90px;
     height: 79px;
     margin-bottom: 30px; }
-  .template--home .help {
+  .template-hello .help {
     margin-top: 2rem;
     font-weight: 300; }
-  .template--home .button {
+  .template-hello .button {
     display: block;
     margin: auto;
     padding-right: 2em;
     padding-left: 2em; }
   @media screen and (min-height: 700px) {
-    .template--home .torchbox-logo-container {
+    .template-hello .torchbox-logo-container {
       position: fixed;
       left: 50%;
       margin: 0;
       margin-left: -75px;
       bottom: 40px; } }
   @media screen and (min-height: 700px) {
-    .template--home .loading-section {
+    .template-hello .loading-section {
       position: fixed;
       width: 600px;
       margin-top: -100px;
       margin-left: -300px;
       top: 50%;
       left: 50%; } }
-
-.cracker {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 100px;
-  /* The animation code */
-  /* The animation code */ }
-  .cracker-left {
-    flex-basis: 50%;
-    height: 50px;
-    text-align: right;
-    animation-name: leftcracker;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite; }
-    .cracker-left > svg {
-      height: 45px; }
-
-@keyframes leftcracker {
-  0% {
-    flex-basis: 50%;
-    opacity: 0; }
-  75% {
-    flex-basis: 47%;
-    opacity: 1; }
-  100% {
-    flex-basis: 47%;
-    opacity: 0; } }
-  .cracker-right {
-    flex-basis: 50%;
-    height: 50px;
-    text-align: left;
-    animation-name: rightcracker;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite; }
-    .cracker-right > svg {
-      height: 45px; }
-
-@keyframes rightcracker {
-  0% {
-    flex-basis: 50%;
-    opacity: 0; }
-  75% {
-    flex-basis: 47%;
-    opacity: 1; }
-  100% {
-    flex-basis: 47%;
-    opacity: 0; } }

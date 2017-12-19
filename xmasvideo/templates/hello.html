@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block body_class %}template--home{% endblock %}
+{% block body_class %}template-hello{% endblock %}
 {% block content %}
   <section class="hide-if-generating-video section">
-    <div class="container home-wrapper">
+    <div class="container hello-wrapper">
       <svg class="holly-graphic">
         <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#holly"></use>
       </svg>
@@ -12,7 +12,7 @@
       <form action = "{{ url_for('create') }}" id="postcard-create-form" method="POST">
         <div class="field">
             <div class="control">
-            <input class="input" name="message" placeholder="Enter message here" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text">
+            <input class="input" name="message" placeholder="Enter name here" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text">
             </div>
             <p class="help">Please use letters and spaces only.</p>
         </div>
@@ -23,15 +23,15 @@
     </div>
   </section>
   <section class="show-if-generating-video section loading-section">
-    <div class="container home-wrapper">
-      <div class="cracker">
-        <div class="cracker-left">
+    <div class="container hello-wrapper">
+      <div class="loading-cracker">
+        <div class="loading-cracker-left">
           <svg viewBox="-47 0 240 57">
             <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#loading-cracker-left" viewBox="0 0 193.24 50"></use>
           </svg>
         </div>
-        <div class="cracker-right">
-          <svg viewBox="47 0 240 57">
+        <div class="loading-cracker-right">
+          <svg viewBox="45.5 0 240 57">
             <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#loading-cracker-right" viewBox="0 0 206 50"></use>
           </svg>
         </div>

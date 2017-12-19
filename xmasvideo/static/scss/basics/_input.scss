@@ -1,0 +1,21 @@
+.input {
+    font-size: 2rem;
+    font-weight: $weight-light;
+
+    &,
+    &:focus,
+    &.is-focused,
+    &:active,
+    &.is-active,
+    &:hover,
+    &.is-hovered {
+        border-top-width: 0;
+        border-right-width: 0;
+        border-left-width: 0;
+        outline: none;
+        box-shadow: none;
+        border-color: $primary;
+        border-radius: 0;
+        border-bottom-width: 2px;
+    }
+}

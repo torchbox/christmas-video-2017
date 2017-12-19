@@ -1,6 +1,14 @@
-.template--home {
+.template-hello {
     text-align: center;
     padding-top: 100px;
+
+    .show-if-generating-video {
+        display: none;
+    }
+
+    .hide-if-generating-video {
+        display: block;
+    }
 
     .intro-text {
         margin-bottom: 30px;
@@ -8,7 +16,7 @@
         font-size: 1.25rem;
     }
 
-    .home-wrapper {
+    .hello-wrapper {
         margin: 0 auto;
         max-width: 600px;
     }

@@ -1,0 +1,43 @@
+$loading-cracker-final-flex-basis: 47%;
+
+.loading-cracker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+
+    &-left, &-right {
+        &>svg {
+            height: 45px;
+        }
+
+        flex-basis: 50%;
+        height: 50px;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-name: loading-cracker;
+    }
+
+    &-left{
+        text-align: right;
+    }
+
+    &-right{
+        text-align: left;
+    }
+
+    @keyframes loading-cracker {
+        0% {
+            flex-basis:50%;
+            opacity: 0;
+        }
+        75% {
+            flex-basis: $loading-cracker-final-flex-basis;
+            opacity: 1;
+        }
+        100% {
+            flex-basis: $loading-cracker-final-flex-basis;
+            opacity: 0;
+        }
+    }
+}
