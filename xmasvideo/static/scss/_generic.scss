@@ -27,7 +27,7 @@ footer {
     &-container {
         text-align: center;
         margin-top: 100px;
-        margin-bottom: 100px;
+        margin-bottom: 40px;
     }
 
     &:hover {
@@ -40,6 +40,9 @@ footer {
 }
 
 .input {
+    font-size: 2rem;
+    font-weight: $weight-light;
+
     &,
     &:focus,
     &.is-focused,

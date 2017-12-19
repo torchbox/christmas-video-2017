@@ -6531,22 +6531,25 @@ footer {
   .torchbox-logo-container {
     text-align: center;
     margin-top: 100px;
-    margin-bottom: 100px; }
+    margin-bottom: 40px; }
   .torchbox-logo:hover {
     fill: #0a0a0a; }
 
 .container {
   max-width: 1024px; }
 
-.input, .input:focus, .input.is-focused, .input:active, .input.is-active, .input:hover, .input.is-hovered {
-  border-top-width: 0;
-  border-right-width: 0;
-  border-left-width: 0;
-  outline: none;
-  box-shadow: none;
-  border-color: #fb5a40;
-  border-radius: 0;
-  border-bottom-width: 2px; }
+.input {
+  font-size: 2rem;
+  font-weight: 300; }
+  .input, .input:focus, .input.is-focused, .input:active, .input.is-active, .input:hover, .input.is-hovered {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+    outline: none;
+    box-shadow: none;
+    border-color: #fb5a40;
+    border-radius: 0;
+    border-bottom-width: 2px; }
 
 .template--home {
   text-align: center;
@@ -6576,7 +6579,7 @@ footer {
       left: 50%;
       margin: 0;
       margin-left: -75px;
-      bottom: 100px; } }
+      bottom: 40px; } }
 
 .cracker {
   display: flex;

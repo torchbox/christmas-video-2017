@@ -38,7 +38,7 @@ function createSocialSharingButtons() {
         options.url = window.shareURL;
     }
     var $jsSocialsContainer = $(".js-socials-container");
-    if ($jsSocialsContainer) {
+    if ($jsSocialsContainer.length) {
         $jsSocialsContainer.jsSocials(options);
     }
 }

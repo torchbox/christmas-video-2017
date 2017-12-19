@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% block extra_head %}
+  <meta property="og:video" content="{{ video_url }}">
+  <meta property="twitter:player:stream" content="{{ video_url }}">
+{% endblock %}
 {% block title %}{{ message }}{% endblock %}
 {% block content %}
   <section class="hero is-primary">
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Thanks
+          {{ message }}
         </h1>
-        <h2 class="subtitle">
-          for your message <strong>{{ message }}</strong>.
-        </h2>
       </div>
     </div>
   </section>

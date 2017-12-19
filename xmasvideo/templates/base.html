@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Beatbox{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     {% block extra_css %}{% endblock %}
+    {% block extra_head %}{% endblock %}
   </head>
   <body class="template {% block body_class %}{% endblock %}">
       {% block content %}{% endblock %}
       <footer>
         <div class="torchbox-logo-container">
-          <a href="http://torchbox.com/">
+          <a href="https://torchbox.com/">
             <svg class="torchbox-logo" viewBox="0 0 244.2 57.1">
               <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#torchbox-logo"></use>
             </svg>
