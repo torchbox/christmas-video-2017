@@ -1,19 +1,21 @@
+$cracker-flex-basis: 47%;
+
 .cracker {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 100px;
 
-    &-left{
-    flex-basis: 50%;
-    height: 50px;
-    background-image: url(../images/crackerleft.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-    animation-name: leftcracker;
-        animation-duration: 1.5s;
-    animation-iteration-count: infinite;
+        &-left{
+            &>svg {
+                height: 45px;
+            }
+        flex-basis: 50%;
+        height: 50px;
+        text-align: right;
+        animation-name: leftcracker;
+            animation-duration: 1.5s;
+        animation-iteration-count: infinite;
     }
 
     /* The animation code */
@@ -23,22 +25,23 @@
             opacity: 0;
         }
         75% {
-            flex-basis:48.5%;
+            flex-basis: $cracker-flex-basis;
             opacity: 1;
         }
         100% {
-            flex-basis:48.5%;
+            flex-basis: $cracker-flex-basis;
             opacity: 0;
         }
     }
 
     &-right{
+        &>svg {
+            height: 45px;
+        }
+
         flex-basis: 50%;
         height: 50px;
-        background-image: url(../images/crackerright.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: left;
+        text-align: left;
         animation-name: rightcracker;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
@@ -51,12 +54,12 @@
             opacity: 0;
         }
         75% {
-            flex-basis:48.5%;
+            flex-basis: $cracker-flex-basis;
             opacity: 1;
         }
 
         100% {
-            flex-basis:48.5%;
+            flex-basis: $cracker-flex-basis;
             opacity: 0;
         }
     }

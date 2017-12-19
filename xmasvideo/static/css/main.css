@@ -6580,6 +6580,14 @@ footer {
       margin: 0;
       margin-left: -75px;
       bottom: 40px; } }
+  @media screen and (min-height: 700px) {
+    .template--home .loading-section {
+      position: fixed;
+      width: 600px;
+      margin-top: -100px;
+      margin-left: -300px;
+      top: 50%;
+      left: 50%; } }
 
 .cracker {
   display: flex;
@@ -6591,42 +6599,40 @@ footer {
   .cracker-left {
     flex-basis: 50%;
     height: 50px;
-    background-image: url(../images/crackerleft.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
+    text-align: right;
     animation-name: leftcracker;
     animation-duration: 1.5s;
     animation-iteration-count: infinite; }
+    .cracker-left > svg {
+      height: 45px; }
 
 @keyframes leftcracker {
   0% {
     flex-basis: 50%;
     opacity: 0; }
   75% {
-    flex-basis: 48.5%;
+    flex-basis: 47%;
     opacity: 1; }
   100% {
-    flex-basis: 48.5%;
+    flex-basis: 47%;
     opacity: 0; } }
   .cracker-right {
     flex-basis: 50%;
     height: 50px;
-    background-image: url(../images/crackerright.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left;
+    text-align: left;
     animation-name: rightcracker;
     animation-duration: 1.5s;
     animation-iteration-count: infinite; }
+    .cracker-right > svg {
+      height: 45px; }
 
 @keyframes rightcracker {
   0% {
     flex-basis: 50%;
     opacity: 0; }
   75% {
-    flex-basis: 48.5%;
+    flex-basis: 47%;
     opacity: 1; }
   100% {
-    flex-basis: 48.5%;
+    flex-basis: 47%;
     opacity: 0; } }

@@ -22,11 +22,19 @@
       </form>
     </div>
   </section>
-  <section class="show-if-generating-video section">
+  <section class="show-if-generating-video section loading-section">
     <div class="container home-wrapper">
       <div class="cracker">
-        <div class="cracker-left"></div>
-        <div class="cracker-right"></div>
+        <div class="cracker-left">
+          <svg viewBox="-47 0 240 57">
+            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#loading-cracker-left" viewBox="0 0 193.24 50"></use>
+          </svg>
+        </div>
+        <div class="cracker-right">
+          <svg viewBox="47 0 240 57">
+            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#loading-cracker-right" viewBox="0 0 206 50"></use>
+          </svg>
+        </div>
       </div>
       <h1 class="title">Generating video...</h1>
     </div>

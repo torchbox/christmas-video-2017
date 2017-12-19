@@ -23,7 +23,10 @@ function formSubmitCallback(event) {
     }
     $('.hide-if-generating-video').fadeOut({
         complete: function() {
-            $('.show-if-generating-video').fadeIn();
+            $('.show-if-generating-video').fadeIn({
+                complete: function() {
+                },
+            });
         },
     });
     target.submit();
