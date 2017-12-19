@@ -17,8 +17,22 @@
 }
 
 footer {
-    margin-top: 200px;
-    text-align: center;
+    width: 100%;
+}
+
+.torchbox-logo {
+    width: 150px;
+    fill: $primary;
+
+    &-container {
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    &:hover {
+        fill: $black;
+    }
 }
 
 .container {
@@ -42,27 +56,4 @@ footer {
         border-radius: 0;
         border-bottom-width: 2px;
     }
-}
-
-.torchbox-logo {
-    fill: $primary;
-    width: 250px;
-    height: 70px;
-
-    &:hover {
-        fill: $black;
-    }
-}
-
-@-webkit-keyframes blinker {
-  from {opacity: 1.0;}
-  to {opacity: 0.0;}
-}
-.blink{
-	text-decoration: blink;
-	-webkit-animation-name: blinker;
-	-webkit-animation-duration: 0.4s;
-	-webkit-animation-iteration-count:infinite;
-	-webkit-animation-timing-function:ease-in-out;
-	-webkit-animation-direction: alternate;
 }

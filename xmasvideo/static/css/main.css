@@ -5,27 +5,27 @@
   font-style: normal; }
 
 @font-face {
-  font-family: 'butlerbold';
+  font-family: 'butler';
   src: url("../fonts/butler_bold-webfont.woff2") format("woff2"), url("../fonts/butler_bold-webfont.woff") format("woff");
-  font-weight: normal;
+  font-weight: 700;
   font-style: normal; }
 
 @font-face {
-  font-family: 'butlerextrabold';
+  font-family: 'butler';
   src: url("../fonts/butler_extrabold-webfont.woff2") format("woff2"), url("../fonts/butler_extrabold-webfont.woff") format("woff");
-  font-weight: normal;
+  font-weight: 900;
   font-style: normal; }
 
 @font-face {
-  font-family: 'butlerlight';
+  font-family: 'butler';
   src: url("../fonts/butler_light-webfont.woff2") format("woff2"), url("../fonts/butler_light-webfont.woff") format("woff");
-  font-weight: normal;
+  font-weight: 200;
   font-style: normal; }
 
 @font-face {
-  font-family: 'butlermedium';
+  font-family: 'butler';
   src: url("../fonts/butler_medium-webfont.woff2") format("woff2"), url("../fonts/butler_medium-webfont.woff") format("woff");
-  font-weight: normal;
+  font-weight: 500;
   font-style: normal; }
 
 @font-face {
@@ -37,7 +37,7 @@
 @font-face {
   font-family: 'butlerultralight';
   src: url("../fonts/butler_ultra_light-webfont.woff2") format("woff2"), url("../fonts/butler_ultra_light-webfont.woff") format("woff");
-  font-weight: normal;
+  font-weight: 100;
   font-style: normal; }
 
 /*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
@@ -144,7 +144,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "butlerregular"; }
+  font-family: "butler"; }
 
 code,
 pre {
@@ -6523,8 +6523,17 @@ label.panel-block {
   border-radius: 0; }
 
 footer {
-  margin-top: 200px;
-  text-align: center; }
+  width: 100%; }
+
+.torchbox-logo {
+  width: 150px;
+  fill: #fb5a40; }
+  .torchbox-logo-container {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px; }
+  .torchbox-logo:hover {
+    fill: #0a0a0a; }
 
 .container {
   max-width: 1024px; }
@@ -6539,37 +6548,82 @@ footer {
   border-radius: 0;
   border-bottom-width: 2px; }
 
-.torchbox-logo {
-  fill: #fb5a40;
-  width: 250px;
-  height: 70px; }
-  .torchbox-logo:hover {
-    fill: #0a0a0a; }
-
-@-webkit-keyframes blinker {
-  from {
-    opacity: 1.0; }
-  to {
-    opacity: 0.0; } }
-
-.blink {
-  text-decoration: blink;
-  -webkit-animation-name: blinker;
-  -webkit-animation-duration: 0.4s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-direction: alternate; }
-
 .template--home {
   text-align: center;
   padding-top: 100px; }
   .template--home .intro-text {
     margin-bottom: 30px;
+    font-weight: 300;
     font-size: 1.25rem; }
   .template--home .home-wrapper {
-    max-width: 800px; }
+    margin: 0 auto;
+    max-width: 600px; }
   .template--home .holly-graphic {
     width: 90px;
-    height: 79px; }
-  .template--home .button.full-width {
-    width: 100%; }
+    height: 79px;
+    margin-bottom: 30px; }
+  .template--home .help {
+    margin-top: 2rem;
+    font-weight: 300; }
+  .template--home .button {
+    display: block;
+    margin: auto;
+    padding-right: 2em;
+    padding-left: 2em; }
+  @media screen and (min-height: 700px) {
+    .template--home .torchbox-logo-container {
+      position: fixed;
+      left: 50%;
+      margin: 0;
+      margin-left: -75px;
+      bottom: 100px; } }
+
+.cracker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+  /* The animation code */
+  /* The animation code */ }
+  .cracker-left {
+    flex-basis: 50%;
+    height: 50px;
+    background-image: url(../images/crackerleft.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    animation-name: leftcracker;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite; }
+
+@keyframes leftcracker {
+  0% {
+    flex-basis: 50%;
+    opacity: 0; }
+  75% {
+    flex-basis: 48.5%;
+    opacity: 1; }
+  100% {
+    flex-basis: 48.5%;
+    opacity: 0; } }
+  .cracker-right {
+    flex-basis: 50%;
+    height: 50px;
+    background-image: url(../images/crackerright.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    animation-name: rightcracker;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite; }
+
+@keyframes rightcracker {
+  0% {
+    flex-basis: 50%;
+    opacity: 0; }
+  75% {
+    flex-basis: 48.5%;
+    opacity: 1; }
+  100% {
+    flex-basis: 48.5%;
+    opacity: 0; } }

@@ -10,26 +10,24 @@
         Send our card or make one for yourself, just enter the recipient's name and we'll make you a special link.
       </p>
       <form action = "{{ url_for('create') }}" id="postcard-create-form" method="POST">
-        <div class="columns">
-          <div class="column is-four-fifths">
-            <div class="field">
-                <div class="control">
-                <input class="input" name="message" placeholder="Enter message here" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text">
-                </div>
-                <p class="help">Please use letters and spaces only.</p>
-            </div>
-          </div>
-          <div class="column">
+        <div class="field">
             <div class="control">
-                <button class="full-width button is-primary">Start</button>
+            <input class="input" name="message" placeholder="Enter message here" required pattern="[A-Za-z\s]+" {% if message_max_length %} maxlength="{{ message_max_length }}" {% endif %} type="text">
             </div>
-          </div>
+            <p class="help">Please use letters and spaces only.</p>
+        </div>
+        <div class="control">
+            <button class="button is-primary">Start</button>
         </div>
       </form>
     </div>
   </section>
   <section class="show-if-generating-video section">
     <div class="container home-wrapper">
+      <div class="cracker">
+        <div class="cracker-left"></div>
+        <div class="cracker-right"></div>
+      </div>
       <h1 class="title">Generating video...</h1>
     </div>
   </section>

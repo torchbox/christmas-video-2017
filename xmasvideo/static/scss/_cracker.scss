@@ -1,0 +1,63 @@
+.cracker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+
+    &-left{
+    flex-basis: 50%;
+    height: 50px;
+    background-image: url(../images/crackerleft.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    animation-name: leftcracker;
+        animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    }
+
+    /* The animation code */
+    @keyframes leftcracker {
+        0% {
+            flex-basis:50%;
+            opacity: 0;
+        }
+        75% {
+            flex-basis:48.5%;
+            opacity: 1;
+        }
+        100% {
+            flex-basis:48.5%;
+            opacity: 0;
+        }
+    }
+
+    &-right{
+        flex-basis: 50%;
+        height: 50px;
+        background-image: url(../images/crackerright.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        animation-name: rightcracker;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        }
+
+        /* The animation code */
+        @keyframes rightcracker {
+        0% {
+            flex-basis:50%;
+            opacity: 0;
+        }
+        75% {
+            flex-basis:48.5%;
+            opacity: 1;
+        }
+
+        100% {
+            flex-basis:48.5%;
+            opacity: 0;
+        }
+    }
+}

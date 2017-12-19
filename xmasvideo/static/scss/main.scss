@@ -4,7 +4,7 @@
 @import "../../../node_modules/bulma/sass/utilities/initial-variables";
 @import "../../../node_modules/bulma/sass/utilities/functions";
 
-$family-serif: "butlerregular";
+$family-serif: "butler";
 $family-primary: $family-serif;
 $orange: #fb5a40;
 $primary: $orange;
@@ -19,3 +19,4 @@ $primary: $orange;
 // Local imports
 @import 'generic';
 @import 'home';
+@import 'cracker';

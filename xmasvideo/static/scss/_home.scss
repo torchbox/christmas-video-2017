@@ -4,21 +4,43 @@
 
     .intro-text {
         margin-bottom: 30px;
+        font-weight: $weight-light;
         font-size: 1.25rem;
     }
 
     .home-wrapper {
-        max-width: 800px;
+        margin: 0 auto;
+        max-width: 600px;
     }
 
     .holly-graphic {
         width: 90px;
         height: 79px;
+        margin-bottom: 30px;
+    }
+
+    .help {
+        margin-top: 2rem;
+        font-weight: $weight-light;
     }
 
     .button {
-        &.full-width {
-            width: 100%;
+        display: block;
+        margin: auto;
+        padding-right: 2em;
+        padding-left: 2em;
+    }
+
+    .torchbox-logo {
+        &-container {
+            @media screen and (min-height: 700px) {
+                position: fixed;
+                left: 50%;
+                margin: 0;
+                margin-left: -75px;
+                bottom: 100px;
+            }
         }
     }
+
 }

@@ -23,11 +23,7 @@ function formSubmitCallback(event) {
     }
     $('.hide-if-generating-video').fadeOut({
         complete: function() {
-            $('.show-if-generating-video').fadeIn({
-                complete: function () {
-                    $('.show-if-generating-video').addClass('blink');
-                },
-            });
+            $('.show-if-generating-video').fadeIn();
         },
     });
     target.submit();
