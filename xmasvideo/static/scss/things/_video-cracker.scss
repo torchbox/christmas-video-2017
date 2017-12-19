@@ -1,0 +1,136 @@
+.video-cracker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+
+    &-confetti {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        z-index: -10;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        &>svg {
+            margin: 0 auto;
+            width: 40%;
+            height: 80%;
+        }
+    }
+
+    &-left, &-right {
+        flex-basis: 25%;
+    }
+
+    &-left {
+        text-align: right;
+    }
+
+    &-right {
+        text-align: left;
+    }
+
+    &-left>svg, &-right>svg {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    &-left>svg {
+        transform: rotate(20deg);
+
+        @media screen and (min-width: 900px) {
+            left: -30px;
+        }
+    }
+
+    &-right>svg {
+        transform: rotate(-10deg);
+
+        @media screen and (min-width: 900px) {
+            right: -50px;
+        }
+    }
+
+    &-picture{
+        flex-basis: 50%;
+        text-align: center;
+        video {
+            height: 200px;
+            @media screen and (min-height: 500px) {
+                height: 500px;
+            }
+
+            @media screen and (min-height: 900px) {
+                height: 900px;
+            }
+        }
+    }
+}
+
+@keyframes video-cracker-confetti {
+    0% {
+        width: 40%
+    }
+
+    100% {
+        width: 90%
+    }
+}
+
+@keyframes video-cracker-left {
+    0% {
+        @media screen and (min-width: 900px) {
+            left: -30px;
+        }
+    }
+
+    100% {
+        transform: rotate(0);
+        left: -100px;
+    }
+}
+
+@keyframes video-cracker-right {
+    0% {
+        @media screen and (min-width: 900px) {
+            right: -50px;
+        }
+    }
+
+    100% {
+        transform: rotate(0);
+        right: -140px;
+    }
+}
+
+
+.video-loaded {
+    .video-cracker {
+        &-confetti>svg {
+            transition: all 2s ease-in-out;
+            animation-name: video-cracker-confetti;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        &-left>svg, &-right>svg {
+            transition: all 1s ease-in-out;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        &-left>svg {
+            animation-name: video-cracker-left;
+
+        }
+
+        &-right>svg {
+            animation-name: video-cracker-right;
+        }
+    }
+}

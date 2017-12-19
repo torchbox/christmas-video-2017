@@ -1,26 +1,37 @@
 {% extends "base.html" %}
+{% block body_class %}template-video{% endblock %}
 {% block extra_head %}
   <meta property="og:video" content="{{ video_url }}">
   <meta property="twitter:player:stream" content="{{ video_url }}">
 {% endblock %}
 {% block title %}{{ message }}{% endblock %}
 {% block content %}
-
-  <svg>
-    <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-left" viewBox="0 0 602.53 379.5"></use>
-  </svg>
-
-  <svg>
-    <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-confetti" viewBox="0 0 1179.19 736.88"></use>
-  </svg>
-
-  <svg>
-    <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-right" viewBox="0 0 635.74 339.82"></use>
-  </svg>
-
-  <video src="{{ video_url }}" controls class="video-player">
-    <a href="{{ video_url }}">Click here to watch the video.</a>
-  </video>
+  <section class="section">
+    <div class="container is-fluid">
+      <div class="video-cracker">
+        <div class="video-cracker-confetti">
+          <svg>
+            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-confetti" viewBox="0 0 1179.19 736.88"></use>
+          </svg>
+        </div>
+        <div class="video-cracker-left">
+          <svg>
+            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-left" viewBox="0 0 602.53 379.5"></use>
+          </svg>
+        </div>
+        <div class="video-cracker-picture">
+          <video src="{{ video_url }}" controls>
+            <a href="{{ video_url }}">Click here to watch the video.</a>
+          </video>
+        </div>
+        <div class="video-cracker-right">
+          <svg>
+            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-right" viewBox="0 0 635.74 339.82"></use>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </div>
   <section class="section">
     <div class="container">
       <p><a class="button is-primary is-large" href="{{ url_for('index') }}">Make another one</a></p>
@@ -46,6 +57,15 @@
 {% block extra_js %}
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
   <script>
-    window.shareURL = '{{ share_url }}';
+    document.addEventListener('DOMContentLoaded', function() {
+      window.shareURL = '{{ share_url }}';
+      var video = document.querySelector('video');
+      video.addEventListener('play', function() {
+        document.body.classList.add('video-loaded');
+      });
+      setTimeout(function() {
+        // video.play();
+      }, 1500);
+    })
   </script>
 {% endblock %}
