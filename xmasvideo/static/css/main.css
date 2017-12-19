@@ -6573,34 +6573,51 @@ label.panel-block {
       width: 40%;
       height: 80%; }
   .video-cracker-left, .video-cracker-right {
-    flex-basis: 25%; }
+    flex-basis: 30%; }
+    @media screen and (min-width: 1024px) {
+      .video-cracker-left, .video-cracker-right {
+        flex-basis: 35%; } }
   .video-cracker-left {
     text-align: right; }
   .video-cracker-right {
     text-align: left; }
   .video-cracker-left > svg, .video-cracker-right > svg {
-    width: 100%;
-    height: 100%;
     position: relative; }
+    @media screen and (min-width: 1024px) {
+      .video-cracker-left > svg, .video-cracker-right > svg {
+        width: 303px;
+        height: 194px; } }
+    @media screen and (min-width: 1408px) {
+      .video-cracker-left > svg, .video-cracker-right > svg {
+        width: 403px;
+        height: 258px; } }
+    @media screen and (min-width: 2000px) {
+      .video-cracker-left > svg, .video-cracker-right > svg {
+        width: 593px;
+        height: 380px; } }
   .video-cracker-left > svg {
-    transform: rotate(20deg); }
-    @media screen and (min-width: 900px) {
+    transform: rotate(20deg);
+    left: -190px; }
+    @media screen and (min-width: 769px) {
       .video-cracker-left > svg {
-        left: -30px; } }
+        left: -80px; } }
+    @media screen and (min-width: 1024px) {
+      .video-cracker-left > svg {
+        left: 0; } }
   .video-cracker-right > svg {
     transform: rotate(-10deg); }
-    @media screen and (min-width: 900px) {
-      .video-cracker-right > svg {
-        right: -50px; } }
   .video-cracker-picture {
-    flex-basis: 50%;
+    flex-basis: 40%;
     text-align: center; }
+    @media screen and (min-width: 1024px) {
+      .video-cracker-picture {
+        flex-basis: 30%; } }
     .video-cracker-picture video {
       height: 200px; }
       @media screen and (min-height: 500px) {
         .video-cracker-picture video {
           height: 500px; } }
-      @media screen and (min-height: 900px) {
+      @media screen and (min-height: 900px) and (min-width: 1024px) {
         .video-cracker-picture video {
           height: 900px; } }
 
@@ -6608,23 +6625,45 @@ label.panel-block {
   0% {
     width: 40%; }
   100% {
-    width: 90%; } }
+    width: 100%; } }
 
 @keyframes video-cracker-left {
   0% {
-    @media screen and (min-width: 900px) {
-      left: -30px; } }
+    left: -190px; }
   100% {
     transform: rotate(0);
-    left: -100px; } }
+    left: -220px; } }
+
+@media screen and (min-width: 769px) {
+  @keyframes video-cracker-left {
+    0% {
+      left: -80; }
+    100% {
+      transform: rotate(0);
+      left: -140px; } } }
+
+@media screen and (min-width: 1024px) {
+  @keyframes video-cracker-left {
+    0% {
+      left: 0; }
+    100% {
+      transform: rotate(0);
+      left: -140px; } } }
 
 @keyframes video-cracker-right {
   0% {
-    @media screen and (min-width: 900px) {
-      right: -50px; } }
+    right: 0; }
   100% {
     transform: rotate(0);
-    right: -140px; } }
+    right: -60px; } }
+
+@media screen and (min-width: 1024px) {
+  @keyframes video-cracker-right {
+    0% {
+      right: 0; }
+    100% {
+      transform: rotate(0);
+      right: -140px; } } }
 
 .video-loaded .video-cracker-confetti > svg {
   transition: all 2s ease-in-out;

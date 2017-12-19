@@ -47,7 +47,7 @@ def create():
     return redirect(url_for('video', **video_url_params))
 
 
-@app.route('/video/<message>')
+@app.route('/video/<message>/')
 def video(message):
     unescaped_message = urllib.parse.unquote(message)
     name = '{}.mp4'.format(slugify(unescaped_message))
