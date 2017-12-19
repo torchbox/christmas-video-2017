@@ -6736,8 +6736,10 @@ label.panel-block {
       top: 50%;
       left: 50%; } }
 
-.template-video .torchbox-logo-container {
-  margin: 0;
-  position: fixed;
-  bottom: 30px;
-  right: 30px; }
+@media screen and (min-width: 769px) {
+  .template-video .torchbox-logo-container {
+    background-color: white;
+    margin: 0;
+    position: fixed;
+    bottom: 30px;
+    right: 30px; } }
