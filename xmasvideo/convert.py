@@ -93,7 +93,8 @@ def images_to_video(message, images, last_frame_image_path=None):
         '{}.txt'.format(message_slug)
     )
     tempfo = open(images_txt_tmp_file, 'w+t')
-    images += [last_frame_image_path] * 5
+    images = images[:-5]
+    images += [last_frame_image_path] * 10
     for image in images:
         image_path = os.path.join(app.config['XMAS_IMAGE_FOLDER'], image)
         # Double check if file exists, otherwise ffmpeg may fail.
