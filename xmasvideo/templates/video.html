@@ -2,33 +2,29 @@
 {% block body_class %}template-video{% endblock %}
 {% block title %}{{ message }}{% endblock %}
 {% block content %}
-  <section class="section">
-    <div class="container is-fluid">
-      <div class="video-cracker">
-        <div class="video-cracker-confetti">
-          <svg>
-            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-confetti" viewBox="0 0 1179.19 736.88"></use>
-          </svg>
-        </div>
-        <div class="video-cracker-left is-hidden-mobile">
-          <svg>
-            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-left" viewBox="0 0 602.53 379.5"></use>
-          </svg>
-        </div>
-        <div class="video-cracker-picture">
-          <video src="{{ video_url }}" controls preload="auto">
-            <a href="{{ video_url }}">Click here to watch the video.</a>
-          </video>
-        </div>
-        <div class="video-cracker-right  is-hidden-mobile">
-          <svg>
-            <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-right" viewBox="0 0 635.74 339.82"></use>
-          </svg>
-        </div>
-      </div>
-    </section>
+  <div class="video-cracker">
+    <div class="video-cracker-confetti">
+      <svg>
+        <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-confetti" viewBox="0 0 1179.19 736.88"></use>
+      </svg>
+    </div>
+    <div class="video-cracker-left is-hidden-mobile">
+      <svg>
+        <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-left" viewBox="0 0 602.53 379.5"></use>
+      </svg>
+    </div>
+    <div class="video-cracker-picture">
+      <video src="{{ video_url }}" controls preload="auto">
+        <a href="{{ video_url }}">Click here to watch the video.</a>
+      </video>
+    </div>
+    <div class="video-cracker-right  is-hidden-mobile">
+      <svg>
+        <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-right" viewBox="0 0 635.74 339.82"></use>
+      </svg>
+    </div>
   </div>
-  <section class="section section-next-to-logo">
+  <section class="section section-next-to-logo" style="margin-top: 120px">
     <div class="container">
       <p><a class="button is-primary is-large" href="{{ url_for('index') }}">Make another one</a></p>
       <br>
