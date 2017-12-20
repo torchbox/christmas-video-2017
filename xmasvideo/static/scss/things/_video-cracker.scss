@@ -73,8 +73,13 @@
     }
 
     &-picture{
-        flex-basis: 40%;
+        flex-basis: 100%;
         text-align: center;
+        z-index: 100;
+
+        @media screen and (min-width: $tablet) {
+            flex-basis: 40%;
+        }
 
         @media screen and (min-width: $desktop) {
             flex-basis: 30%;

@@ -6569,8 +6569,12 @@ label.panel-block {
   .video-cracker-right > svg {
     transform: rotate(-10deg); }
   .video-cracker-picture {
-    flex-basis: 40%;
-    text-align: center; }
+    flex-basis: 100%;
+    text-align: center;
+    z-index: 100; }
+    @media screen and (min-width: 769px) {
+      .video-cracker-picture {
+        flex-basis: 40%; } }
     @media screen and (min-width: 1024px) {
       .video-cracker-picture {
         flex-basis: 30%; } }

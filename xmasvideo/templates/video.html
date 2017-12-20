@@ -10,7 +10,7 @@
             <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-confetti" viewBox="0 0 1179.19 736.88"></use>
           </svg>
         </div>
-        <div class="video-cracker-left">
+        <div class="video-cracker-left is-hidden-mobile">
           <svg>
             <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-left" viewBox="0 0 602.53 379.5"></use>
           </svg>
@@ -20,7 +20,7 @@
             <a href="{{ video_url }}">Click here to watch the video.</a>
           </video>
         </div>
-        <div class="video-cracker-right">
+        <div class="video-cracker-right  is-hidden-mobile">
           <svg>
             <use xlink:href="{{ url_for('static', filename='images/sprites.svg') }}#video-cracker-right" viewBox="0 0 635.74 339.82"></use>
           </svg>
@@ -62,13 +62,12 @@
       // Auto-play after 1.5 seconds (ensures things loaded) if user
       // has not played it themselves.
       setTimeout(function() {
-        if (video.paused) {
-          try {
+        video.addEventListener('loadeddata', function() {
+          if (video.paused) {
             video.play();
-          } catch(e) {
-            // Silence the exception if play() is not allowed
           }
-        }
+        })
+        video.load()
       }, 1500);
     })
   </script>
