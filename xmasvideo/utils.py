@@ -21,6 +21,10 @@ def slugify(text, delim='-'):
     return str(delim.join(result))
 
 
+def unslugify(text, delim='-'):
+    return text.replace(delim, ' ').title()
+
+
 def cache_flush_password_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):

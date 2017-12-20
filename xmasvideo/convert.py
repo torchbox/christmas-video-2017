@@ -40,11 +40,14 @@ def pick_images(message):
     letter_counter = Counter()
     message_images = []
     # pick letter images for the message
+    message = 'merry-christmas-{}-❤-torchbox'.format(message)
     for letter in message.lower():
         if letter == ' ':
             image = random.choice(plain_images)
             message_images.append(image)
             plain_images.remove(image)  # don't use the same random image twice
+        elif letter == '❤':
+            message_images.append('heart.jpg')
         else:
             letter_image = get_next_letter_image(letter, letter_images,
                                                  letter_counter)

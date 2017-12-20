@@ -6575,6 +6575,7 @@ label.panel-block {
       .video-cracker-picture {
         flex-basis: 30%; } }
     .video-cracker-picture video {
+      background-color: #0a0a0a;
       max-height: 200px; }
       @media screen and (min-height: 500px) {
         .video-cracker-picture video {
