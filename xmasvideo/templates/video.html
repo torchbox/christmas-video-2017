@@ -33,7 +33,7 @@
       </div>
       <div class="field">
         <div class="control">
-          <input class="input" readonly type="text" value="{{ share_url|default(request.base_url) }}">
+          <input class="input" readonly type="text" onClick="this.select();" value="{{ share_url|default(request.base_url) }}">
         </div>
       </div>
     </div>
