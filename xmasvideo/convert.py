@@ -66,6 +66,16 @@ def pick_images(message):
             random.shuffle(plain_images)
         selected_plain_images.append(image)
         plain_images.remove(image)
+    # Use lastframe.jpg
+    if selected_plain_images:
+        for index, plain_image in enumerate(reversed(selected_plain_images)):
+            reverse_index = (index + 1) * -1
+            # last 5 frames only
+            if reverse_index == -5:
+                break
+            if len(selected_plain_images) >= reverse_index:
+                selected_plain_images[reverse_index] = 'lastframe.jpg'
+                continue
     return message_images + selected_plain_images
 
 
