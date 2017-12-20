@@ -55,7 +55,12 @@ def pick_images(message):
     # add non-letter images
     selected_plain_images = []
     for i in range(0, app.config['XMAS_MAX_IMAGES'] - len(message_images)):
-        image = random.choice(plain_images)
+        try:
+            image = random.choice(plain_images)
+        except IndexError:
+            # Recycle images if needed
+            plain_images = selected_plain_images.copy()
+            random.shuffle(plain_images)
         selected_plain_images.append(image)
         plain_images.remove(image)
     return message_images + selected_plain_images
@@ -106,6 +111,12 @@ def images_to_video(message, images):
         '0',
         '-i',
         images_txt_tmp_file,
+        '-vcodec',
+        'libx264',
+        '-preset',
+        'ultrafast',
+        '-movflags',
+        '+faststart',
         '-crf',
         '15',
         '-vf',
@@ -126,9 +137,18 @@ def images_to_video(message, images):
         '-shortest',
         '-strict',
         '-2',
+        '-vcodec',
+        'libx264',
+        '-movflags',
+        '+faststart',
+        '-preset',
+        'ultrafast',
         final_filepath,
     ]
     app.logger.info('About to run %s', repr(audio_cmd))
     subprocess.check_call(audio_cmd)
+
+    # Delete silent video file
+    os.remove(silent_filepath)
 
     return final_filepath
