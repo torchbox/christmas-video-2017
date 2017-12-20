@@ -14,7 +14,7 @@
       </svg>
     </div>
     <div class="video-cracker-picture">
-      <video src="{{ video_url }}" controls preload="auto">
+      <video src="{{ video_url }}" controls>
         <a href="{{ video_url }}">Click here to watch the video.</a>
       </video>
     </div>
@@ -28,13 +28,10 @@
     <div class="container">
       <p><a class="button is-primary is-large" href="{{ url_for('index') }}">Make another one</a></p>
       <br>
-      <h2 class="title is-2">Share</h2>
       <div class="field">
-        <label class="label">Share to social media</label>
         <div class="js-socials-container"></div>
       </div>
       <div class="field">
-        <label class="label">Share URL</label>
         <div class="control">
           <input class="input" readonly type="text" value="{{ share_url|default(request.base_url) }}">
         </div>
@@ -58,12 +55,10 @@
       // Auto-play after 1.5 seconds (ensures things loaded) if user
       // has not played it themselves.
       setTimeout(function() {
-        video.addEventListener('loadeddata', function() {
-          if (video.paused) {
-            video.play();
-          }
-        })
-        video.load()
+        if (video.paused) {
+          video.autoplay = true;
+          video.load();
+        }
       }, 1500);
     })
   </script>

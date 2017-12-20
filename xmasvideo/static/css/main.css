@@ -6518,7 +6518,7 @@ label.panel-block {
 .video-cracker {
   width: 100%;
   max-width: 1600px;
-  margin: 25px auto;
+  margin: 25px     auto;
   overflow: hidden; }
   @media screen and (min-width: 769px) {
     .video-cracker {
@@ -6576,12 +6576,15 @@ label.panel-block {
       max-height: 500px; }
       @media screen and (min-height: 700px) {
         .video-cracker-picture video {
+          min-height: 500px;
           max-height: 600px; } }
       @media screen and (min-height: 900px) {
         .video-cracker-picture video {
+          min-height: 700px;
           max-height: 800px; } }
       @media screen and (min-height: 1200px) {
         .video-cracker-picture video {
+          min-height: 1000px;
           max-height: 1100px; } }
 
 @keyframes video-cracker-confetti {

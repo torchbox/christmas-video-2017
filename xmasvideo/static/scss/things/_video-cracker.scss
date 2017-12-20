@@ -82,14 +82,17 @@
             max-height: 500px;
 
             @media screen and (min-height: 700px) {
+                min-height: 500px;
                 max-height: 600px;
             }
 
             @media screen and (min-height: 900px) {
+                min-height: 700px;
                 max-height: 800px;
             }
 
             @media screen and (min-height: 1200px) {
+                min-height: 1000px;
                 max-height: 1100px;
             }
         }
