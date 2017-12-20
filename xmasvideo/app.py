@@ -22,7 +22,6 @@ app = Flask(__name__)
 app.config.from_object("xmasvideo.config")
 
 
-
 def max_length():
     return app.config['XMAS_MAX_IMAGES'] - len('MerryChristmasXTORCHBOX')
 

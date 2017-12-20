@@ -40,7 +40,7 @@
       <div class="field">
         <label class="label">Share URL</label>
         <div class="control">
-          <input class="input" readonly type="text" value="{{ share_url }}">
+          <input class="input" readonly type="text" value="{{ share_url|default(request.base_url) }}">
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      window.shareURL = '{{ share_url }}';
+      window.shareURL = '{{ share_url|default(request.base_url) }}';
       var video = document.querySelector('video');
       video.addEventListener('play', function() {
         document.body.classList.add('video-loaded');
