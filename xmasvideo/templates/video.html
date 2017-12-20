@@ -63,7 +63,11 @@
       // has not played it themselves.
       setTimeout(function() {
         if (video.paused) {
-          video.play();
+          try {
+            video.play();
+          } catch(e) {
+            // Silence the exception if play() is not allowed
+          }
         }
       }, 1500);
     })
