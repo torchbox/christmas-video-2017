@@ -23,7 +23,7 @@ app.config.from_object("xmasvideo.config")
 
 
 def max_length():
-    return app.config['XMAS_MAX_IMAGES'] - len('MerryChristmasXTORCHBOX')
+    return app.config['XMAS_MAX_IMAGES'] - len('Merry Christmas XTORCHBOX')
 
 
 @app.route('/')

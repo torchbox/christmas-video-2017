@@ -40,9 +40,9 @@ def pick_images(message):
     letter_counter = Counter()
     message_images = []
     # pick letter images for the message
-    message = 'merry-christmas-{}-❤-torchbox'.format(message)
+    message = 'merry-christmas-{}-❤torchbox'.format(message)
     for letter in message.lower():
-        if letter == ' ':
+        if letter == ' ' or letter == '-':
             image = random.choice(plain_images)
             message_images.append(image)
             plain_images.remove(image)  # don't use the same random image twice
