@@ -66,20 +66,10 @@ def pick_images(message):
             random.shuffle(plain_images)
         selected_plain_images.append(image)
         plain_images.remove(image)
-    # Use lastframe.jpg
-    if selected_plain_images:
-        for index, plain_image in enumerate(reversed(selected_plain_images)):
-            reverse_index = (index + 1) * -1
-            # last 5 frames only
-            if reverse_index == -5:
-                break
-            if len(selected_plain_images) >= reverse_index:
-                selected_plain_images[reverse_index] = 'lastframe.jpg'
-                continue
     return message_images + selected_plain_images
 
 
-def images_to_video(message, images):
+def images_to_video(message, images, last_frame_image_path=None):
     os.makedirs(app.config['XMAS_OUTPUT_FOLDER'], exist_ok=True)
     os.makedirs(app.config['XMAS_IMAGE_TXT_FILES_DIR'], exist_ok=True)
     message_slug = message.replace(' ', '-')
@@ -103,6 +93,7 @@ def images_to_video(message, images):
         '{}.txt'.format(message_slug)
     )
     tempfo = open(images_txt_tmp_file, 'w+t')
+    images += [last_frame_image_path] * 5
     for image in images:
         image_path = os.path.join(app.config['XMAS_IMAGE_FOLDER'], image)
         # Double check if file exists, otherwise ffmpeg may fail.

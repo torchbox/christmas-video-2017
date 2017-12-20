@@ -3,6 +3,7 @@ import os
 from flask import abort, Flask, redirect, render_template, request, url_for
 
 from .convert import pick_images, images_to_video
+from .grid_image import create_grid_image
 from .s3 import (
     upload_mp4_video_to_s3,
     get_s3_file_public_url,
@@ -14,7 +15,6 @@ from .utils import (
     flush_tmp_app_directories,
     slugify,
     unslugify,
-    create_image_for_video,
 )
 
 
@@ -41,18 +41,25 @@ def create():
     if not sluggified_message or len(sluggified_message) > max_length():
         return redirect(url_for('index'))
     images = pick_images(sluggified_message)
-    video_path = images_to_video(sluggified_message, images)
+    last_frame_image_path = create_grid_image(sluggified_message, images)
+    sharing_image_path = create_grid_image(sluggified_message, images,
+                                           landscape=True)
+    video_path = images_to_video(
+        sluggified_message,
+        images,
+        last_frame_image_path=last_frame_image_path,
+    )
     video_filename = os.path.split(video_path)[1]
     if not get_s3_file_public_url(video_filename):
         upload_mp4_video_to_s3(video_path, video_filename)
     else:
         app.logger.info('%s exists on S3, skipping upload.', video_filename)
-    image_path = create_image_for_video(video_path, message)
-    image_filename = os.path.split(image_path)[1]
-    if not get_s3_file_public_url(image_filename):
-        upload_jpeg_image_to_s3(image_path, image_filename)
+    sharing_image_filename = '{}.jpg'.format(video_filename)
+    if not get_s3_file_public_url(sharing_image_filename):
+        upload_jpeg_image_to_s3(sharing_image_path, sharing_image_filename)
     else:
-        app.logger.info('%s exists on S3, skipping upload.', image_filename)
+        app.logger.info('%s exists on S3, skipping upload.',
+                        sharing_image_filename)
     video_url_params = {
         'message': sluggified_message,
     }
@@ -75,7 +82,7 @@ def video(message):
     title = 'Merry Christmas {} ❤️ Torchbox'.format(unslugify(message))
     context = {
         'video_url': s3_video_url,
-        # 'share_image': s3_image_url,
+        'share_image': s3_image_url,
         'message': title,
         'share_description': title,
     }
