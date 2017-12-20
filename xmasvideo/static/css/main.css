@@ -1,45 +1,3 @@
-@font-face {
-  font-family: 'butlerblack';
-  src: url("../fonts/butler_black-webfont.woff2") format("woff2"), url("../fonts/butler_black-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'butler';
-  src: url("../fonts/butler_bold-webfont.woff2") format("woff2"), url("../fonts/butler_bold-webfont.woff") format("woff");
-  font-weight: 700;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'butler';
-  src: url("../fonts/butler_extrabold-webfont.woff2") format("woff2"), url("../fonts/butler_extrabold-webfont.woff") format("woff");
-  font-weight: 900;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'butler';
-  src: url("../fonts/butler_light-webfont.woff2") format("woff2"), url("../fonts/butler_light-webfont.woff") format("woff");
-  font-weight: 200;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'butler';
-  src: url("../fonts/butler_medium-webfont.woff2") format("woff2"), url("../fonts/butler_medium-webfont.woff") format("woff");
-  font-weight: 500;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'butlerregular';
-  src: url("../fonts/butler_regular-webfont.woff2") format("woff2"), url("../fonts/butler_regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'butlerultralight';
-  src: url("../fonts/butler_ultra_light-webfont.woff2") format("woff2"), url("../fonts/butler_ultra_light-webfont.woff") format("woff");
-  font-weight: 100;
-  font-style: normal; }
-
 /*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -144,7 +102,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "butler"; }
+  font-family: "proxima-nova"; }
 
 code,
 pre {
@@ -6508,6 +6466,10 @@ label.panel-block {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem; }
 
+.title {
+  font-weight: 100;
+  font-size: 44px; }
+
 .button {
   border-radius: 0; }
 
@@ -6703,8 +6665,8 @@ label.panel-block {
     display: block; }
   .template-hello .intro-text {
     margin-bottom: 30px;
-    font-weight: 300;
-    font-size: 1.25rem; }
+    font-size: 28px;
+    font-weight: 300; }
   .template-hello .hello-wrapper {
     margin: 0 auto;
     max-width: 600px; }
@@ -6714,6 +6676,7 @@ label.panel-block {
     margin-bottom: 30px; }
   .template-hello .help {
     margin-top: 2rem;
+    font-size: 20px;
     font-weight: 300; }
   .template-hello .button {
     display: block;
@@ -6735,6 +6698,8 @@ label.panel-block {
       margin-left: -300px;
       top: 50%;
       left: 50%; } }
+  .template-hello .input {
+    text-align: center; }
 
 @media screen and (min-width: 769px) {
   .template-video .torchbox-logo-container {
