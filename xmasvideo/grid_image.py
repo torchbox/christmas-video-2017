@@ -27,6 +27,7 @@ def next_image_dimension(image_size, total_rows_and_columns, index):
 
 
 def create_grid_image(name, images, landscape=False):
+    os.makedirs(app.config['XMAS_VIDEOS_IMAGES_DIR'], exist_ok=True)
     orientation = 'landscape' if landscape else 'portrait'
     image_size = PORTRAIT_MODE_SIZE
     grid_size = PORTRAIT_GRID_SIZE
