@@ -75,7 +75,7 @@ def video(message):
     title = 'Merry Christmas {} ❤️ Torchbox'.format(unslugify(message))
     context = {
         'video_url': s3_video_url,
-        'share_image': s3_image_url,
+        # 'share_image': s3_image_url,
         'message': title,
         'share_description': title,
     }

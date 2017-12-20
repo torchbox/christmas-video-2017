@@ -10,14 +10,14 @@
     <meta name="twitter:title" content="Beatbox">
     <meta name="twitter:description" content="{{ share_description|default('Happy christmas with love from Torchbox') }}">
     {% if share_image %}
-    <meta name="twitter:image:src" content="{{ share_image|default(url_for('static', filename='images/sharing_image.jpg')) }}" />
+    <meta name="twitter:image:src" content="{{ share_image|default(url_for('static', filename='images/sharing_image.jpg', _external=True)) }}" />
     {% endif %}
 
     <meta property="fb:app_id" content="995117193836517" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ share_url|default(request.base_url) }}" />
     <meta property="og:title" content="Beatbox" />
-    <meta property="og:image" content="{{ share_image|default(url_for('static', filename='images/sharing_image.jpg')) }}" />
+    <meta property="og:image" content="{{ share_image|default(url_for('static', filename='images/sharing_image.jpg', _external=True)) }}" />
     <meta property="og:description" content="{{ share_description|default('Happy christmas with love from Torchbox') }}" />
     <meta property="og:site_name" content="Beatbox" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
