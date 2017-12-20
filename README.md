@@ -58,6 +58,6 @@ dokku config:set SECRET_KEY='your app secret key' S3_SECRET='' S3_ACCESS_KEY='' 
 
 Flushing created videos
 ```bash
-curl -X POST -d "password=your-password-here" http://beatbox.dokku.torchbox.click/flush-s3/
-curl -X POST -d "password=your-password-here" http://beatbox.dokku.torchbox.click/flush-tmp/
+curl -X POST -d "password=your-password-here" https://beatbox.torchbox.com/flush-s3/
+curl -X POST -d "password=your-password-here" https://beatbox.torchbox.com/flush-tmp/
 ```
