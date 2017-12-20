@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 {% block body_class %}template-video{% endblock %}
-{% block extra_head %}
-  <meta property="og:video" content="{{ video_url }}">
-  <meta property="twitter:player:stream" content="{{ video_url }}">
-{% endblock %}
 {% block title %}{{ message }}{% endblock %}
 {% block content %}
   <section class="section">
@@ -63,8 +59,12 @@
       video.addEventListener('play', function() {
         document.body.classList.add('video-loaded');
       });
+      // Auto-play after 1.5 seconds (ensures things loaded) if user
+      // has not played it themselves.
       setTimeout(function() {
-        video.play();
+        if (video.paused) {
+          video.play();
+        }
       }, 1500);
     })
   </script>

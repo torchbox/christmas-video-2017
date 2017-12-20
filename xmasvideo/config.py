@@ -4,11 +4,11 @@ import os
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-PORT = 5000
 
 XMAS_IMAGE_FOLDER = os.path.join(ROOT_DIR, 'images')
 XMAS_OUTPUT_FOLDER = '/tmp/xmas/videos'
 XMAS_IMAGE_TXT_FILES_DIR = '/tmp/xmas/image_txt_files'
+XMAS_VIDEOS_IMAGES_DIR = '/tmp/xmas/videos_images'
 XMAS_AUDIO_FILE = os.path.join(ROOT_DIR, 'beatbox.wav')
 XMAS_MAX_IMAGES = 20
 

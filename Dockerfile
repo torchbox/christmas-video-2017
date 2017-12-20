@@ -6,8 +6,7 @@ RUN apt-get update -y && \
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
-    PYTHONUNBUFFERED=1 \
-    FLASK_APP=xmasvideo/app.py
+    PYTHONUNBUFFERED=1
 
 COPY ./requirements.txt /code/requirements.txt
 RUN pip3 install -r /code/requirements.txt
@@ -16,4 +15,4 @@ COPY . /code/
 WORKDIR /code/
 
 EXPOSE 5000
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD ["uwsgi", "--ini", "uwsgi.ini"]

@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@torchbox">
+    <meta name="twitter:creator" content="@torchbox">
+    <meta name="twitter:title" content="Beatbox">
+    <meta name="twitter:description" content="{{ share_description|default('Happy christmas with love from Torchbox') }}">
+    {% if share_image %}
+      <meta name="twitter:image:src" content="{{ share_image|default(url_for('static', filename='image/sharing_image.jpg')) }}" />
+    {% endif %}
+
+    <meta property="fb:app_id" content="995117193836517" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ share_url|default(request.base_url) }}" />
+    <meta property="og:title" content="Beatbox" />
+    <meta property="og:image" content="{{ share_image|default(url_for('static', filename='image/sharing_image.jpg')) }}" />
+    <meta property="og:description" content="{{ share_description|default('Happy christmas with love from Torchbox') }}" />
+    <meta property="og:site_name" content="Beatbox" />
     {% block extra_css %}{% endblock %}
     {% block extra_head %}{% endblock %}
   </head>

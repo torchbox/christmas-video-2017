@@ -6613,13 +6613,13 @@ label.panel-block {
       .video-cracker-picture {
         flex-basis: 30%; } }
     .video-cracker-picture video {
-      height: 200px; }
+      max-height: 200px; }
       @media screen and (min-height: 500px) {
         .video-cracker-picture video {
-          height: 500px; } }
+          max-height: 500px; } }
       @media screen and (min-height: 900px) and (min-width: 1024px) {
         .video-cracker-picture video {
-          height: 900px; } }
+          max-height: 900px; } }
 
 @keyframes video-cracker-confetti {
   0% {

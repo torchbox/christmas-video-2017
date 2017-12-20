@@ -66,3 +66,19 @@ def flush_videos_from_s3():
     app.logger.info('Flushing objects from S3 bucket %s',
                     app.config['S3_BUCKET'])
     s3_resource().Bucket(app.config['S3_BUCKET']).objects.delete()
+
+
+def upload_jpeg_image_to_s3(file_path, filename):
+    app.logger.info('Started upload of %s to S3', file_path)
+    args = {
+        'ACL': 'public-read',
+        'ContentType': 'image/jpeg',
+    }
+    try:
+        s3().upload_file(file_path, app.config['S3_BUCKET'], filename,
+                         ExtraArgs=args)
+        app.logger.info('Uploaded %s to S3', file_path)
+    except (boto3.exceptions.S3UploadFailedError,
+            botocore.exceptions.ClientError):
+        app.logger.exception('Failed upload of %s to S3', file_path)
+        raise
