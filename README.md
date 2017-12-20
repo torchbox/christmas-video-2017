@@ -27,16 +27,16 @@ yarn scss:watch
 
 ## Todo
 
- - [ ] convert these TODOs to issues
- - [ ] add letters to images
- - [ ] edit images for consistent lighting and scale
- - [ ] name letter holding images with letter and number, e.g. `a1.jpg`
+ - [x] convert these TODOs to issues
+ - [x] add letters to images
+ - [x] edit images for consistent lighting and scale
+ - [x] name letter holding images with letter and number, e.g. `a1.jpg`
  - [x] write `generate(message)` method which creates a video made from images for each letter in `message`
  - [x] append audio file to video. video must be same duration as audio file (~20 seconds)
  - [x] store the video on s3, e.g. `happy-christmas-tomasz-heart-torchbox.mp4`
- - [ ] build web UI for card creation
- - [ ] build web UI for card viewing / sharing
- - [ ] database for tracking created videos, views and shares
+ - [x] build web UI for card creation
+ - [x] build web UI for card viewing / sharing
+ - [ ] ~~database for tracking created videos, views and shares~~
 
 ## Deployment notes
 
