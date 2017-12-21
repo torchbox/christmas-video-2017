@@ -12,6 +12,7 @@ from .s3 import (
     upload_jpeg_image_to_s3,
 )
 from .utils import (
+    apply_acronyms_to_title,
     cache_flush_password_required,
     flush_tmp_app_directories,
     slugify,
@@ -88,6 +89,7 @@ def card(message):
         app.logger.info('%s does not exist on S3', name)
         abort(404)
     title = 'Merry Christmas {} ❤️ Torchbox'.format(unslugify(message))
+    title = apply_acronyms_to_title(title)
     context = {
         'video_url': s3_video_url,
         'share_image': s3_image_url,

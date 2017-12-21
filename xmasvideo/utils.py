@@ -53,3 +53,16 @@ def flush_tmp_app_directories():
         pass
     app.logger.info('Deleted %s and its contents',
                     app.config['XMAS_VIDEOS_IMAGES_DIR'])
+
+
+def apply_acronyms_to_title(title):
+    acronyms_original = app.config['ACRONYMS']
+    acronyms_upper = [acronym.upper() for acronym in acronyms_original]
+    new_title = []
+    for title_part in title.split():
+        try:
+            index = acronyms_upper.index(title_part.upper())
+            new_title.append(acronyms_original[index])
+        except ValueError:
+            new_title.append(title_part)
+    return ' '.join(new_title)
