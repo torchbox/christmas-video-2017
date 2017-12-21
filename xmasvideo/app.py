@@ -1,6 +1,7 @@
 import os
 
 from flask import abort, Flask, redirect, render_template, request, url_for
+from flask_headers import headers
 
 from .convert import pick_images, images_to_video
 from .grid_image import create_grid_image
@@ -27,6 +28,7 @@ def max_length():
 
 
 @app.route('/')
+@headers({'Cache-Control':'public, max-age=60'})
 def index():
     context = {
         'message_max_length': max_length(),
@@ -67,6 +69,7 @@ def create():
 
 
 @app.route('/video/<message>/')
+@headers({'Cache-Control':'public, max-age=300'})
 def video(message):
     if message.lower() != message:
         video_url_params = {
