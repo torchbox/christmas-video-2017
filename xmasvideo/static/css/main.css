@@ -6707,8 +6707,21 @@ label.panel-block {
 
 @media screen and (min-width: 769px) {
   .template-video .torchbox-logo-container {
-    background-color: white;
     margin: 0;
     position: fixed;
     bottom: 30px;
     right: 30px; } }
+
+.template-video .jack-credit {
+  color: #7a7a7a;
+  text-align: center; }
+  @media screen and (min-width: 1024px) {
+    .template-video .jack-credit {
+      width: 300px;
+      text-align: left;
+      position: fixed;
+      bottom: 30px;
+      left: 30px; } }
+  @media screen and (min-width: 1408px) {
+    .template-video .jack-credit {
+      width: 100%; } }

@@ -1,11 +1,27 @@
 .template-video {
     .torchbox-logo-container {
         @media screen and (min-width: $tablet) {
-            background-color: $white;
             margin: 0;
             position: fixed;
             bottom: 30px;
     	    right: 30px;
+        }
+    }
+
+    .jack-credit {
+        color: $grey;
+        text-align: center;
+
+        @media screen and (min-width: $desktop) {
+            width: 300px;
+            text-align: left;
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+        }
+
+        @media screen and (min-width: $fullhd) {
+            width: 100%;
         }
     }
 }
