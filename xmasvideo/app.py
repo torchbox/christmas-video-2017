@@ -28,7 +28,7 @@ def max_length():
 
 
 @app.route('/')
-@headers({'Cache-Control':'public, max-age=60'})
+@headers({'Cache-Control': 'public, max-age=60'})
 def index():
     context = {
         'message_max_length': max_length(),
@@ -65,17 +65,22 @@ def create():
     video_url_params = {
         'message': sluggified_message,
     }
-    return redirect(url_for('video', **video_url_params))
+    return redirect(url_for('card', **video_url_params))
 
 
 @app.route('/video/<message>/')
-@headers({'Cache-Control':'public, max-age=300'})
-def video(message):
+def video_redirect(message):
+    return redirect(url_for('card', message=message), code=301)
+
+
+@app.route('/card/<message>/')
+@headers({'Cache-Control': 'public, max-age=300'})
+def card(message):
     if message.lower() != message:
         video_url_params = {
             'message': message.lower(),
         }
-        return redirect(url_for('video', **video_url_params))
+        return redirect(url_for('card', **video_url_params))
     name = '{}.mp4'.format(message)
     s3_video_url = get_s3_file_public_url(name)
     s3_image_url = get_s3_file_public_url('{}.jpg'.format(name))
