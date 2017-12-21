@@ -25,7 +25,7 @@ app.config.from_object("xmasvideo.config")
 
 
 def max_length():
-    return app.config['XMAS_MAX_IMAGES'] - len('Merry Christmas XTORCHBOX') - 5
+    return app.config['XMAS_MAX_IMAGES'] - len('Merry Christmas XTORCHBOX')
 
 
 @app.route('/')
@@ -43,6 +43,14 @@ def create():
     sluggified_message = slugify(message)
     if not sluggified_message or len(sluggified_message) > max_length():
         return redirect(url_for('index'))
+    video_filename = '{}.mp4'.format(sluggified_message)
+    s3_video_url = get_s3_file_public_url(video_filename)
+    if s3_video_url:
+        app.logger.info('%s exists in S3, just serve it.', video_filename)
+        video_url_params = {
+            'message': sluggified_message,
+        }
+        return redirect(url_for('card', **video_url_params))
     images = pick_images(sluggified_message)
     last_frame_image_path = create_grid_image(sluggified_message, images)
     sharing_image_path = create_grid_image(sluggified_message, images,
@@ -52,8 +60,7 @@ def create():
         images,
         last_frame_image_path=last_frame_image_path,
     )
-    video_filename = os.path.split(video_path)[1]
-    if not get_s3_file_public_url(video_filename):
+    if not s3_video_url:
         upload_mp4_video_to_s3(video_path, video_filename)
     else:
         app.logger.info('%s exists on S3, skipping upload.', video_filename)

@@ -72,9 +72,8 @@ def pick_images(message):
 def images_to_video(message, images, last_frame_image_path=None):
     os.makedirs(app.config['XMAS_OUTPUT_FOLDER'], exist_ok=True)
     os.makedirs(app.config['XMAS_IMAGE_TXT_FILES_DIR'], exist_ok=True)
-    message_slug = message.replace(' ', '-')
-    silent_filename = '{}-silent.mp4'.format(message_slug)
-    final_filename = '{}.mp4'.format(message_slug)
+    silent_filename = '{}-silent.mp4'.format(message)
+    final_filename = '{}.mp4'.format(message)
     silent_filepath = os.path.join(
         app.config['XMAS_OUTPUT_FOLDER'],
         silent_filename
@@ -90,12 +89,12 @@ def images_to_video(message, images, last_frame_image_path=None):
 
     images_txt_tmp_file = os.path.join(
         app.config['XMAS_IMAGE_TXT_FILES_DIR'],
-        '{}.txt'.format(message_slug)
+        '{}.txt'.format(message)
     )
     tempfo = open(images_txt_tmp_file, 'w+t')
     images.insert(0, images[0])
     images = images[:-5]
-    images += [last_frame_image_path] * 7
+    images += [last_frame_image_path] * 10
     for image in images:
         image_path = os.path.join(app.config['XMAS_IMAGE_FOLDER'], image)
         # Double check if file exists, otherwise ffmpeg may fail.
