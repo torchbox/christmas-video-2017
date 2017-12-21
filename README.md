@@ -56,8 +56,19 @@ dokku proxy:ports-add beatbox http:80:5000
 dokku config:set SECRET_KEY='your app secret key' S3_SECRET='' S3_ACCESS_KEY='' S3_BUCKET='' CACHE_FLUSH_PASSWORD=''
 ```
 
+Add Nginx caching:
+```bash
+dokku plugin:install https://github.com/koalalorenzo/dokku-nginx-cache.git nginx-cache
+dokku nginx-cache:enable beatbox
+```
+
 Flushing created videos
 ```bash
 curl -X POST -d "password=your-password-here" https://beatbox.torchbox.com/flush-s3/
 curl -X POST -d "password=your-password-here" https://beatbox.torchbox.com/flush-tmp/
+```
+
+Flushing the Nginx cache
+```bash
+dokku nginx-cache:clear
 ```
