@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112981-58"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-112981-58');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Beatbox{% endblock %}</title>
@@ -12,8 +20,6 @@
     {% if share_image %}
     <meta name="twitter:image:src" content="{{ share_image|default(url_for('static', filename='images/sharing_image.jpg', _external=True)) }}" />
     {% endif %}
-
-    <meta property="fb:app_id" content="995117193836517" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ share_url|default(request.base_url) }}" />
     <meta property="og:title" content="Beatbox" />
