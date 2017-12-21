@@ -29,6 +29,7 @@ ACRONYMS = [
     'GOSH',
     'WFP',
     'TUC',
+    'CFPB',
 ]
 
 try:
