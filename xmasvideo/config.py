@@ -31,6 +31,7 @@ ACRONYMS = [
     'TUC',
     'CFPB',
     'WAGGGS',
+    'CIOB',
 ]
 
 try:
