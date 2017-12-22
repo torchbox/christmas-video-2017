@@ -32,6 +32,7 @@ ACRONYMS = [
     'CFPB',
     'WAGGGS',
     'CIOB',
+    'CLIC SARGENT',
 ]
 
 try:
