@@ -1,7 +1,6 @@
-import os
-
 from flask import abort, Flask, redirect, render_template, request, url_for
 from flask_headers import headers
+from flask_sslify import SSLify
 
 from .convert import pick_images, images_to_video
 from .grid_image import create_grid_image
@@ -21,6 +20,7 @@ from .utils import (
 
 
 app = Flask(__name__)
+SSLify(app, permanent=True)
 app.config.from_object("xmasvideo.config")
 
 
